@@ -37,6 +37,7 @@ dependencies:
   motion_toast: ^2.5.3
   integration_test:
     sdk: flutter
+  bottom_navy_bar: ^6.0.0
 
 dev_dependencies:
   flutter_test:
