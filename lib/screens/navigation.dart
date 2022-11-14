@@ -1,5 +1,6 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:feedtheneed/screens/dashboard.dart';
+import 'package:feedtheneed/screens/donation_history.dart';
 
 import 'package:flutter/material.dart';
 
@@ -38,8 +39,8 @@ class _NavigationState extends State<Navigation> {
             setState(() => _currentIndex = index);
           },
           children: <Widget>[
-            Dashboard(),
-            Cart(),
+            const Dashboard(),
+            const DonationHistory(),
             MyOrderScreen(),
             Profile(),
           ],
@@ -53,26 +54,26 @@ class _NavigationState extends State<Navigation> {
         },
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-            title: Text('Home'),
-            icon: Icon(Icons.home),
+            title: const Text('Home'),
+            icon: const Icon(Icons.home),
             activeColor: Colors.black,
             inactiveColor: Colors.orange,
           ),
           BottomNavyBarItem(
-            title: Text('My Cart'),
-            icon: Icon(Icons.shopping_cart_checkout_outlined),
+            title: const Text('My Cart'),
+            icon: const Icon(Icons.shopping_cart_checkout_outlined),
             activeColor: Colors.black,
             inactiveColor: Colors.orange,
           ),
           BottomNavyBarItem(
-            title: Text('My Order'),
-            icon: Icon(Icons.track_changes_outlined),
+            title: const Text('My Order'),
+            icon: const Icon(Icons.track_changes_outlined),
             activeColor: Colors.black,
             inactiveColor: Colors.orange,
           ),
           BottomNavyBarItem(
-            title: Text('Profile'),
-            icon: Icon(Icons.person),
+            title: const Text('Profile'),
+            icon: const Icon(Icons.person),
             activeColor: Colors.black,
             inactiveColor: Colors.orange,
           ),
