@@ -3,10 +3,9 @@ import 'package:feedtheneed/screens/blog.dart';
 import 'package:feedtheneed/screens/dashboard.dart';
 import 'package:feedtheneed/screens/donate.dart';
 import 'package:feedtheneed/screens/donation_history.dart';
+import 'package:feedtheneed/screens/profile.dart';
 
 import 'package:flutter/material.dart';
-
-import '';
 
 class Navigation extends StatefulWidget {
   const Navigation({Key? key}) : super(key: key);
@@ -45,6 +44,7 @@ class _NavigationState extends State<Navigation> {
             DonationHistory(),
             Donate(),
             Blog(),
+            Profile(),
           ],
         ),
       ),
