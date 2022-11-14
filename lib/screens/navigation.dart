@@ -1,5 +1,7 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:feedtheneed/screens/blog.dart';
 import 'package:feedtheneed/screens/dashboard.dart';
+import 'package:feedtheneed/screens/donate.dart';
 import 'package:feedtheneed/screens/donation_history.dart';
 
 import 'package:flutter/material.dart';
@@ -38,11 +40,11 @@ class _NavigationState extends State<Navigation> {
           onPageChanged: (index) {
             setState(() => _currentIndex = index);
           },
-          children: <Widget>[
-            const Dashboard(),
-            const DonationHistory(),
-            MyOrderScreen(),
-            Profile(),
+          children: const <Widget>[
+            Dashboard(),
+            DonationHistory(),
+            Donate(),
+            Blog(),
           ],
         ),
       ),
