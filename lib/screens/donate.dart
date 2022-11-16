@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Donate extends StatefulWidget {
   const Donate({Key? key}) : super(key: key);
@@ -13,7 +11,12 @@ class _DonateState extends State<Donate> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Text('This is donate dection'),
+      body: Center(
+        child: Text(
+          "this is donate",
+          style: TextStyle(fontSize: 40),
+        ),
+      ),
     );
   }
 }

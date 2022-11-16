@@ -56,28 +56,71 @@ class _NavigationState extends State<Navigation> {
         },
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-            title: const Text('Home'),
-            icon: const Icon(Icons.home),
-            activeColor: Colors.black,
-            inactiveColor: Colors.orange,
+            title: const Text('Home',
+                style: TextStyle(
+                  color: Colors.black,
+                )),
+            icon: const Icon(
+              Icons.dashboard_outlined,
+              color: Colors.blueGrey,
+            ),
+            activeColor: Colors.lightBlue,
+            inactiveColor: Colors.blueGrey,
+            textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            title: const Text('My Cart'),
-            icon: const Icon(Icons.shopping_cart_checkout_outlined),
-            activeColor: Colors.black,
-            inactiveColor: Colors.orange,
+            title: const Text('History',
+                style: TextStyle(
+                  color: Colors.black,
+                )),
+            icon: const Icon(
+              Icons.account_balance_wallet_outlined,
+              color: Colors.blueGrey,
+            ),
+            activeColor: Colors.lightBlue,
+            inactiveColor: Colors.blueGrey,
+            textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            title: const Text('My Order'),
-            icon: const Icon(Icons.track_changes_outlined),
-            activeColor: Colors.black,
-            inactiveColor: Colors.orange,
+            title: const Text('Donate',
+                style: TextStyle(
+                  color: Colors.black,
+                )),
+            icon: const Icon(
+              Icons.add_card,
+              color: Colors.blueGrey,
+            ),
+            activeColor: Colors.lightBlue,
+            inactiveColor: Colors.blueGrey,
+            textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            title: const Text('Profile'),
-            icon: const Icon(Icons.person),
-            activeColor: Colors.black,
-            inactiveColor: Colors.orange,
+            title: const Text(
+              'Blog',
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+            icon: const Icon(
+              Icons.book,
+              color: Colors.blueGrey,
+            ),
+            activeColor: Colors.lightBlue,
+            inactiveColor: Colors.blueGrey,
+            textAlign: TextAlign.center,
+          ),
+          BottomNavyBarItem(
+            title: const Text('Profile',
+                style: TextStyle(
+                  color: Colors.black,
+                )),
+            icon: const Icon(
+              Icons.person,
+              color: Colors.blueGrey,
+            ),
+            activeColor: Colors.lightBlue,
+            inactiveColor: Colors.blueGrey,
+            textAlign: TextAlign.center,
           ),
         ],
       ),

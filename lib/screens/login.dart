@@ -1,4 +1,4 @@
-import 'package:feedtheneed/screens/dashboard.dart';
+import 'package:feedtheneed/screens/navigation.dart';
 import 'package:feedtheneed/screens/register.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +11,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   bool _isHidden = true;
   bool? check1 = false;
   @override
@@ -61,7 +63,8 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 ),
-                TextField(
+                TextFormField(
+                  controller: _emailController,
                   textAlign: TextAlign.left,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
@@ -90,6 +93,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 TextField(
+                  controller: _passwordController,
                   obscureText: _isHidden,
                   textAlign: TextAlign.left,
                   keyboardType: TextInputType.text,
@@ -170,7 +174,7 @@ class _LoginState extends State<Login> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Dashboard()),
+                              builder: (context) => const Navigation()),
                           // MaterialPageRoute(builder: (context) => WearOs()),
                         );
                       },
