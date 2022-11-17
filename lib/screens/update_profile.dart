@@ -1,5 +1,4 @@
 import 'package:feedtheneed/screens/navigation.dart';
-import 'package:feedtheneed/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -254,14 +253,7 @@ class _UpdateState extends State<Update> {
                                 RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ))),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Profile()),
-                            // MaterialPageRoute(builder: (context) => WearOs()),
-                          );
-                        },
+                        onPressed: () => _showToast(context),
                         child: const Text(
                           "Update profile",
                         ),
@@ -272,6 +264,18 @@ class _UpdateState extends State<Update> {
               ),
             )
           ],
+        ),
+      ),
+    );
+  }
+
+  void _showToast(BuildContext context) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      const SnackBar(
+        content: Text(
+          'Updated Sucessfully',
+          textAlign: TextAlign.center,
         ),
       ),
     );

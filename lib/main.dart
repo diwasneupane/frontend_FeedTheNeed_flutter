@@ -1,5 +1,6 @@
 import 'package:feedtheneed/screens/dashboard.dart';
 import 'package:feedtheneed/screens/login.dart';
+import 'package:feedtheneed/screens/myaccount.dart';
 import 'package:feedtheneed/screens/navigation.dart';
 import 'package:feedtheneed/screens/profile.dart';
 import 'package:feedtheneed/screens/register.dart';
@@ -19,6 +20,7 @@ void main() {
         '/navigation': (context) => const Navigation(),
         '/profile': (context) => const Profile(),
         '/update': (context) => const Update(),
+        '/account': (context) => const MyAccount(),
       },
     ),
   );

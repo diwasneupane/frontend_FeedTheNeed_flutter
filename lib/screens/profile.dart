@@ -1,4 +1,5 @@
 import 'package:feedtheneed/screens/login.dart';
+import 'package:feedtheneed/screens/myaccount.dart';
 import 'package:feedtheneed/screens/update_profile.dart';
 import 'package:flutter/material.dart';
 
@@ -105,33 +106,49 @@ class _ProfileState extends State<Profile> {
                         const SizedBox(
                           height: 20,
                         ),
-                        ListTile(
-                          leading: const CircleAvatar(
-                            radius: 30,
-                            backgroundColor: Colors.white,
-                            child: CircleAvatar(
-                              backgroundColor:
-                                  Color.fromARGB(255, 241, 250, 253),
-                              radius: 27,
-                              child: Icon(
-                                Icons.person_outline,
-                                color: Color(0xFF41A2CD),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const MyAccount(),
+                              ),
+                            );
+                          },
+                          child: ListTile(
+                            leading: const CircleAvatar(
+                              radius: 30,
+                              backgroundColor: Colors.white,
+                              child: CircleAvatar(
+                                backgroundColor:
+                                    Color.fromARGB(255, 241, 250, 253),
+                                radius: 27,
+                                child: Icon(
+                                  Icons.person_outline,
+                                  color: Color(0xFF41A2CD),
+                                ),
                               ),
                             ),
-                          ),
-                          title: const Text(
-                            "My Account ",
-                          ),
-                          subtitle: const Text("Make changes to your account",
-                              style: TextStyle(
-                                  color: Colors.blueGrey, fontSize: 10)),
-                          trailing: IconButton(
-                            onPressed: () {
-                              //action coe when button is pressed
-                            },
-                            icon: const Icon(
-                              Icons.keyboard_arrow_right_outlined,
-                              color: Colors.blueGrey,
+                            title: const Text(
+                              "My Account ",
+                            ),
+                            subtitle: const Text("Make changes to your account",
+                                style: TextStyle(
+                                    color: Colors.blueGrey, fontSize: 10)),
+                            trailing: IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const MyAccount(),
+                                  ),
+                                );
+                                //action coe when button is pressed
+                              },
+                              icon: const Icon(
+                                Icons.keyboard_arrow_right_outlined,
+                                color: Colors.blueGrey,
+                              ),
                             ),
                           ),
                         ),
@@ -278,6 +295,9 @@ class _ProfileState extends State<Profile> {
                               color: Colors.blueGrey,
                             ),
                           ),
+                        ),
+                        const SizedBox(
+                          height: 20,
                         ),
                         ListTile(
                           leading: const CircleAvatar(
