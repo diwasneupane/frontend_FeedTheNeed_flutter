@@ -57,7 +57,7 @@ class _RegisterState extends State<Register> {
                 ),
               ),
             ),
-            TextField(
+            TextFormField(
               textAlign: TextAlign.left,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(

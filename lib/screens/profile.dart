@@ -1,4 +1,5 @@
 import 'package:feedtheneed/screens/login.dart';
+import 'package:feedtheneed/screens/update_profile.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -65,6 +66,10 @@ class _ProfileState extends State<Profile> {
                           style: TextStyle(color: Colors.white)),
                       trailing: IconButton(
                         onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Update()));
                           //action coe when button is pressed
                         },
                         icon: const Icon(

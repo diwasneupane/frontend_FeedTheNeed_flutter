@@ -1,7 +1,9 @@
 import 'package:feedtheneed/screens/dashboard.dart';
 import 'package:feedtheneed/screens/login.dart';
 import 'package:feedtheneed/screens/navigation.dart';
+import 'package:feedtheneed/screens/profile.dart';
 import 'package:feedtheneed/screens/register.dart';
+import 'package:feedtheneed/screens/update_profile.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,6 +17,8 @@ void main() {
         '/register': (context) => const Register(),
         '/dashboard': (context) => const Dashboard(),
         '/navigation': (context) => const Navigation(),
+        '/profile': (context) => const Profile(),
+        '/update': (context) => const Update(),
       },
     ),
   );
