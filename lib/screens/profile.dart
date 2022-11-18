@@ -1,3 +1,4 @@
+import 'package:feedtheneed/screens/helpandsupport.dart';
 import 'package:feedtheneed/screens/login.dart';
 import 'package:feedtheneed/screens/myaccount.dart';
 import 'package:feedtheneed/screens/update_profile.dart';
@@ -277,7 +278,7 @@ class _ProfileState extends State<Profile> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const MyAccount(),
+                                builder: (context) => const Helpandsupport(),
                               ),
                             );
                           },
