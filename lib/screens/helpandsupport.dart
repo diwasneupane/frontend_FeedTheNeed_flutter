@@ -1,3 +1,4 @@
+import 'package:feedtheneed/screens/contactUs.dart';
 import 'package:flutter/material.dart';
 
 class Helpandsupport extends StatefulWidget {
@@ -73,7 +74,14 @@ class _HelpandsupportState extends State<Helpandsupport> {
                         height: 30,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ContactUs(),
+                            ),
+                          );
+                        },
                         child: ListTile(
                           leading: const CircleAvatar(
                             radius: 30,

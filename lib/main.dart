@@ -1,3 +1,4 @@
+import 'package:feedtheneed/screens/contactUs.dart';
 import 'package:feedtheneed/screens/dashboard.dart';
 import 'package:feedtheneed/screens/helpandsupport.dart';
 import 'package:feedtheneed/screens/login.dart';
@@ -25,6 +26,7 @@ void main() {
         '/account': (context) => const MyAccount(),
         '/helpandsupport': (context) => const Helpandsupport(),
         '/information': (context) => const Information(),
+        '/contact': (context) => const ContactUs(),
       },
     ),
   );
