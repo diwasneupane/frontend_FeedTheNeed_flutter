@@ -1,4 +1,5 @@
 import 'package:feedtheneed/screens/dashboard.dart';
+import 'package:feedtheneed/screens/helpandsupport.dart';
 import 'package:feedtheneed/screens/login.dart';
 import 'package:feedtheneed/screens/myaccount.dart';
 import 'package:feedtheneed/screens/navigation.dart';
@@ -21,6 +22,7 @@ void main() {
         '/profile': (context) => const Profile(),
         '/update': (context) => const Update(),
         '/account': (context) => const MyAccount(),
+        '/helpandsupport': (context) => const Helpandsupport(),
       },
     ),
   );

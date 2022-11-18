@@ -145,6 +145,29 @@ class _UpdateState extends State<Update> {
                     textAlign: TextAlign.left,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
+                      icon: const Icon(Icons.person_add_alt_1_outlined),
+                      hintText: 'What about your username?',
+                      hintStyle: const TextStyle(
+                        fontSize: 16,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                      filled: true,
+                      contentPadding: const EdgeInsets.all(16),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20, //<-- SEE HERE
+                  ),
+                  TextFormField(
+                    textAlign: TextAlign.left,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
                       icon: const Icon(Icons.place),
                       hintText: 'What is your Address?',
                       hintStyle: const TextStyle(

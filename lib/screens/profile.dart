@@ -60,8 +60,10 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       title: const Text(
-                        "Email",
-                        style: TextStyle(color: Colors.white),
+                        "diwas@gmail.com",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
                       subtitle: const Text("Username",
                           style: TextStyle(color: Colors.white)),
@@ -132,7 +134,8 @@ class _ProfileState extends State<Profile> {
                             title: const Text(
                               "My Account ",
                             ),
-                            subtitle: const Text("Make changes to your account",
+                            subtitle: const Text(
+                                "View all the important information",
                                 style: TextStyle(
                                     color: Colors.blueGrey, fontSize: 10)),
                             trailing: IconButton(
@@ -269,30 +272,40 @@ class _ProfileState extends State<Profile> {
                         const SizedBox(
                           height: 20,
                         ),
-                        ListTile(
-                          leading: const CircleAvatar(
-                            radius: 30,
-                            backgroundColor: Colors.white,
-                            child: CircleAvatar(
-                              backgroundColor:
-                                  Color.fromARGB(255, 241, 250, 253),
-                              radius: 27,
-                              child: Icon(
-                                Icons.notifications_active_outlined,
-                                color: Color(0xFF41A2CD),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const MyAccount(),
+                              ),
+                            );
+                          },
+                          child: ListTile(
+                            leading: const CircleAvatar(
+                              radius: 30,
+                              backgroundColor: Colors.white,
+                              child: CircleAvatar(
+                                backgroundColor:
+                                    Color.fromARGB(255, 241, 250, 253),
+                                radius: 27,
+                                child: Icon(
+                                  Icons.notifications_active_outlined,
+                                  color: Color(0xFF41A2CD),
+                                ),
                               ),
                             ),
-                          ),
-                          title: const Text(
-                            "Help & Support",
-                          ),
-                          trailing: IconButton(
-                            onPressed: () {
-                              //action coe when button is pressed
-                            },
-                            icon: const Icon(
-                              Icons.keyboard_arrow_right_outlined,
-                              color: Colors.blueGrey,
+                            title: const Text(
+                              "Help & Support",
+                            ),
+                            trailing: IconButton(
+                              onPressed: () {
+                                //action coe when button is pressed
+                              },
+                              icon: const Icon(
+                                Icons.keyboard_arrow_right_outlined,
+                                color: Colors.blueGrey,
+                              ),
                             ),
                           ),
                         ),
