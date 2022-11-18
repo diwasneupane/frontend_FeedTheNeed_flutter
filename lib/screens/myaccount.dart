@@ -1,3 +1,4 @@
+import 'package:feedtheneed/screens/information.dart';
 import 'package:feedtheneed/screens/login.dart';
 import 'package:flutter/material.dart';
 
@@ -86,7 +87,14 @@ class _MyAccountState extends State<MyAccount> {
                         height: 30,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Information(),
+                            ),
+                          );
+                        },
                         child: ListTile(
                           leading: const CircleAvatar(
                             radius: 30,

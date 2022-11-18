@@ -6,6 +6,7 @@ import 'package:feedtheneed/screens/navigation.dart';
 import 'package:feedtheneed/screens/profile.dart';
 import 'package:feedtheneed/screens/register.dart';
 import 'package:feedtheneed/screens/update_profile.dart';
+import 'package:feedtheneed/screens/information.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -23,6 +24,7 @@ void main() {
         '/update': (context) => const Update(),
         '/account': (context) => const MyAccount(),
         '/helpandsupport': (context) => const Helpandsupport(),
+        '/information': (context) => const Information(),
       },
     ),
   );
