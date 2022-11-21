@@ -1,6 +1,7 @@
-import 'package:feedtheneed/screens/navigation.dart';
+import 'package:feedtheneed/repositories/user_repository.dart';
 import 'package:feedtheneed/screens/register.dart';
 import 'package:flutter/material.dart';
+import 'package:motion_toast/motion_toast.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -15,6 +16,14 @@ class _LoginState extends State<Login> {
   final _passwordController = TextEditingController();
   bool _isHidden = true;
   bool? check1 = false;
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -171,12 +180,15 @@ class _LoginState extends State<Login> {
                             borderRadius: BorderRadius.circular(50),
                           ))),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Navigation()),
-                          // MaterialPageRoute(builder: (context) => WearOs()),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //       builder: (context) => const Navigation()),
+                        //   // MaterialPageRoute(builder: (context) => WearOs()),
+                        // );
+                        if (_formKey.currentState!.validate()) {
+                          _login();
+                        }
                       },
                       child: Text(
                         "Login".toUpperCase(),
@@ -213,6 +225,31 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+
+  _login() async {
+    try {
+      UserRepository userRepository = UserRepository();
+      bool isLogin = await userRepository.login(
+        _emailController.text,
+        _passwordController.text,
+      );
+
+      if (isLogin) {
+        // ignore: use_build_context_synchronously
+        Navigator.pushReplacementNamed(context, '/navigation');
+      } else {
+        // ignore: use_build_context_synchronously
+        MotionToast.error(
+          description: const Text("Either email or password is not correct"),
+        ).show(context);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      MotionToast.error(
+        description: Text("Error : ${e.toString()}"),
+      ).show(context);
+    }
   }
 
   void _togglePasswordView() {

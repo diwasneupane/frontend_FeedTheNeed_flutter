@@ -1,3 +1,5 @@
+import 'package:feedtheneed/model/profile.dart';
+import 'package:feedtheneed/repositories/user_repository.dart';
 import 'package:feedtheneed/screens/helpandsupport.dart';
 import 'package:feedtheneed/screens/login.dart';
 import 'package:feedtheneed/screens/myaccount.dart';
@@ -12,6 +14,22 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  UserProfile? user;
+  @override
+  void initState() {
+    getUserDetails();
+    super.initState();
+  }
+
+  void getUserDetails() async {
+    UserProfile? user1 = await UserRepository().getUserDetails();
+
+    setState(() {
+      user = user1!;
+      debugPrint(user!.address.toString());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,57 +51,60 @@ class _ProfileState extends State<Profile> {
                 const SizedBox(
                   height: 20,
                 ),
-                Container(
-                  height: 95,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF41A2CD),
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.25),
-                        spreadRadius: 0,
-                        blurRadius: 4,
-                        offset:
-                            const Offset(0, 4), // changes position of shadow
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: ListTile(
-                      leading: const CircleAvatar(
-                        radius: 30,
-                        backgroundColor: Colors.white,
-                        child: CircleAvatar(
-                          radius: 27,
-                          backgroundImage: NetworkImage(
-                              'https://static01.nyt.com/images/2022/09/16/arts/16CAMERON1/16CAMERON1-videoSixteenByNine3000.jpg'),
+                if (user != null)
+                  Container(
+                    height: 95,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF41A2CD),
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.25),
+                          spreadRadius: 0,
+                          blurRadius: 4,
+                          offset:
+                              const Offset(0, 4), // changes position of shadow
                         ),
-                      ),
-                      title: const Text(
-                        "diwas@gmail.com",
-                        style: TextStyle(
-                          color: Colors.white,
+                      ],
+                    ),
+                    child: Center(
+                      child: ListTile(
+                        leading: const CircleAvatar(
+                          radius: 30,
+                          backgroundColor: Colors.white,
+                          child: CircleAvatar(
+                            radius: 27,
+                            backgroundImage: NetworkImage(
+                                'https://static01.nyt.com/images/2022/09/16/arts/16CAMERON1/16CAMERON1-videoSixteenByNine3000.jpg'),
+                          ),
                         ),
-                      ),
-                      subtitle: const Text("Username",
-                          style: TextStyle(color: Colors.white)),
-                      trailing: IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Update()));
-                          //action coe when button is pressed
-                        },
-                        icon: const Icon(
-                          Icons.edit,
-                          color: Colors.white,
+                        title: Text(
+                          user!.email!,
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        subtitle: Text(
+                          user!.username == null ? "____" : "${user!.username}",
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        trailing: IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Update()));
+                            //action coe when button is pressed
+                          },
+                          icon: const Icon(
+                            Icons.edit,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
                 const SizedBox(
                   height: 30,
                 ),
