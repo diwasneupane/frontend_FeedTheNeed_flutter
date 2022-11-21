@@ -8,13 +8,15 @@ import 'package:feedtheneed/screens/profile.dart';
 import 'package:flutter/material.dart';
 
 class Navigation extends StatefulWidget {
-  const Navigation({Key? key}) : super(key: key);
+  final int index;
+  const Navigation({Key? key, this.index = 1}) : super(key: key);
 
   @override
   State<Navigation> createState() => _NavigationState();
 }
 
 class _NavigationState extends State<Navigation> {
+  int increment = 0;
   int _currentIndex = 0;
   PageController? _pageController;
 
@@ -33,25 +35,23 @@ class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox.expand(
-        child: PageView(
-          controller: _pageController,
-          onPageChanged: (index) {
-            setState(() => _currentIndex = index);
-          },
-          children: const <Widget>[
-            Dashboard(),
-            DonationHistory(),
-            Donate(),
-            Blog(),
-            Profile(),
-          ],
-        ),
+      body: IndexedStack(
+        index: increment == 0 ? widget.index : _currentIndex,
+        children: const <Widget>[
+          Dashboard(),
+          DonationHistory(),
+          Donate(),
+          Blog(),
+          Profile(),
+        ],
       ),
       bottomNavigationBar: BottomNavyBar(
-        selectedIndex: _currentIndex,
+        selectedIndex: increment == 0 ? widget.index : _currentIndex,
         onItemSelected: (index) {
-          setState(() => _currentIndex = index);
+          setState(() {
+            _currentIndex = index;
+            increment = 1;
+          });
           _pageController!.jumpToPage(index);
         },
         items: <BottomNavyBarItem>[

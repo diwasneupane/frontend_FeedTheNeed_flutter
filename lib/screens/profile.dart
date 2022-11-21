@@ -5,6 +5,7 @@ import 'package:feedtheneed/screens/login.dart';
 import 'package:feedtheneed/screens/myaccount.dart';
 import 'package:feedtheneed/screens/update_profile.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -208,13 +209,12 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                         InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Login(),
-                              ),
-                            );
+                          onTap: () async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.clear();
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                                '/login', (Route<dynamic> route) => false);
                           },
                           child: ListTile(
                             leading: const CircleAvatar(

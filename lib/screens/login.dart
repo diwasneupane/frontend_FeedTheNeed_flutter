@@ -1,4 +1,6 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:feedtheneed/repositories/user_repository.dart';
+import 'package:feedtheneed/screens/navigation.dart';
 import 'package:feedtheneed/screens/register.dart';
 import 'package:flutter/material.dart';
 import 'package:motion_toast/motion_toast.dart';
@@ -24,8 +26,10 @@ class _LoginState extends State<Login> {
     _passwordController.dispose();
   }
 
+  // final String _errorMessage = '';
   @override
   Widget build(BuildContext context) {
+    // String errorMessage = '';
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(
@@ -73,9 +77,20 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (email) =>
+                      email != null && !EmailValidator.validate(email)
+                          ? 'Enter a valid email'
+                          : null,
+                  // validator: (value) {
+                  //   if (value!.isEmpty) {
+                  //     return 'Please Enter Your Email';
+                  //   }
+                  //   return null;
+                  // },
                   controller: _emailController,
                   textAlign: TextAlign.left,
-                  keyboardType: TextInputType.text,
+                  // keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     hintText: 'Exapmle@gmail.com',
                     hintStyle:
@@ -101,7 +116,13 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 ),
-                TextField(
+                TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please Enter Your Password';
+                    }
+                    return null;
+                  },
                   controller: _passwordController,
                   obscureText: _isHidden,
                   textAlign: TextAlign.left,
@@ -237,7 +258,12 @@ class _LoginState extends State<Login> {
 
       if (isLogin) {
         // ignore: use_build_context_synchronously
-        Navigator.pushReplacementNamed(context, '/navigation');
+        Navigator.of(context).push(
+          MaterialPageRoute(
+              builder: (context) => const Navigation(
+                    index: 4,
+                  )),
+        );
       } else {
         // ignore: use_build_context_synchronously
         MotionToast.error(
@@ -257,4 +283,19 @@ class _LoginState extends State<Login> {
       _isHidden = !_isHidden;
     });
   }
+
+  // void validateEmail(String val) {
+  //   if (val.isEmpty) {
+  //     setState(() {
+  //       _errorMessage = "Email can not be empty";
+  //     });
+  //   } else if (!EmailValidator.validate(val, true)) {
+  //     setState(() {
+  //       _errorMessage = "Invalid Email Address";
+  //     });
+  //   } else {
+  //     setState(() {
+  //       _errorMessage = "";
+  //     });
+  //   }
 }

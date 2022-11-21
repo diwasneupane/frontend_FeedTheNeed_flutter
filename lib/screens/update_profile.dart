@@ -18,10 +18,11 @@ class _UpdateState extends State<Update> {
   final _usernameController = TextEditingController();
   final _phoneController = TextEditingController();
   final _addressController = TextEditingController();
+  final _dobController = TextEditingController();
   // final _dobController = TextEditingController();
 
   final _globalKey = GlobalKey<FormState>();
-  TextEditingController dateinput = TextEditingController();
+  // TextEditingController dateinput = TextEditingController();
   //text editing controller for text field
 
   UserProfile? user;
@@ -36,7 +37,14 @@ class _UpdateState extends State<Update> {
 
     setState(() {
       user = user1!;
-      debugPrint(user!.address.toString());
+      if (user != null) {
+        _firstnameController.text = user!.firstname!;
+        _lastnameController.text = user!.lastname!;
+        _usernameController.text = user!.username!;
+        _addressController.text = user!.address!;
+        _phoneController.text = user!.phone!;
+        _dobController.text = user!.dob!;
+      }
     });
   }
 
@@ -51,7 +59,10 @@ class _UpdateState extends State<Update> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const Navigation()),
+              MaterialPageRoute(
+                  builder: (context) => const Navigation(
+                        index: 4,
+                      )),
             );
           },
           icon: const Icon(
@@ -74,26 +85,26 @@ class _UpdateState extends State<Update> {
               const SizedBox(
                 height: 40,
               ),
-              if (user != null)
-                Center(
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(48.0),
-                        boxShadow: const [
-                          BoxShadow(color: Colors.white70, blurRadius: 20.0)
-                        ]),
-                    child: CircleAvatar(
-                      radius: 45,
-                      backgroundColor: const Color(0xFF41A2CD),
-                      child: Padding(
-                        padding: const EdgeInsets.all(3), // Border radius
-                        child: ClipOval(
-                            child: Image.network(
-                                'https://pyxis.nymag.com/v1/imgs/51b/28a/622789406b8850203e2637d657d5a0e0c3-avatar-rerelease.1x.rsquare.w1400.jpg')),
-                      ),
+              // if (user != null)
+              Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(48.0),
+                      boxShadow: const [
+                        BoxShadow(color: Colors.white70, blurRadius: 20.0)
+                      ]),
+                  child: CircleAvatar(
+                    radius: 45,
+                    backgroundColor: const Color(0xFF41A2CD),
+                    child: Padding(
+                      padding: const EdgeInsets.all(3), // Border radius
+                      child: ClipOval(
+                          child: Image.network(
+                              'https://pyxis.nymag.com/v1/imgs/51b/28a/622789406b8850203e2637d657d5a0e0c3-avatar-rerelease.1x.rsquare.w1400.jpg')),
                     ),
                   ),
                 ),
+              ),
               const SizedBox(
                 height: 10,
               ),
@@ -121,6 +132,12 @@ class _UpdateState extends State<Update> {
                 child: Column(
                   children: [
                     TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please Enter Your First name';
+                        }
+                        return null;
+                      },
                       controller: _firstnameController,
                       textAlign: TextAlign.left,
                       keyboardType: TextInputType.text,
@@ -146,6 +163,12 @@ class _UpdateState extends State<Update> {
                       height: 20,
                     ),
                     TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please Enter Your First name';
+                        }
+                        return null;
+                      },
                       controller: _lastnameController,
                       textAlign: TextAlign.left,
                       keyboardType: TextInputType.text,
@@ -170,6 +193,12 @@ class _UpdateState extends State<Update> {
                       height: 20, //<-- SEE HERE
                     ),
                     TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please Enter Your Username';
+                        }
+                        return null;
+                      },
                       controller: _usernameController,
                       textAlign: TextAlign.left,
                       keyboardType: TextInputType.text,
@@ -194,6 +223,12 @@ class _UpdateState extends State<Update> {
                       height: 20, //<-- SEE HERE
                     ),
                     TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please Enter Your Address';
+                        }
+                        return null;
+                      },
                       controller: _addressController,
                       textAlign: TextAlign.left,
                       keyboardType: TextInputType.text,
@@ -218,26 +253,38 @@ class _UpdateState extends State<Update> {
                       height: 20, //<-- SEE HERE
                     ),
                     TextFormField(
-                      controller: _phoneController,
-                      textAlign: TextAlign.left,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        icon: const Icon(Icons.phone),
-                        hintText: 'what is your phone number?',
-                        hintStyle: const TextStyle(
-                          fontSize: 16,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
+                        controller: _phoneController,
+                        textAlign: TextAlign.left,
+                        decoration: InputDecoration(
+                          icon: const Icon(Icons.phone),
+                          hintText: 'what is your phone number?',
+                          hintStyle: const TextStyle(
+                            fontSize: 16,
                           ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                          filled: true,
+                          contentPadding: const EdgeInsets.all(16),
                         ),
-                        filled: true,
-                        contentPadding: const EdgeInsets.all(16),
-                      ),
-                    ),
+                        keyboardType: TextInputType.phone,
+                        onChanged: (value) {
+                          _globalKey.currentState?.validate();
+                        },
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Please Enter a Phone Number";
+                          } else if (!RegExp(
+                                  r'^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$')
+                              .hasMatch(value)) {
+                            return "Please Enter a Valid Phone Number";
+                          }
+                          return null;
+                        }),
                     const SizedBox(
                       height: 20, //<-- SEE HERE
                     ),
@@ -263,7 +310,7 @@ class _UpdateState extends State<Update> {
                         contentPadding: const EdgeInsets.all(16),
                       ),
                       controller:
-                          dateinput, //editing controller of this TextField
+                          _dobController, //editing controller of this TextField
 
                       readOnly:
                           true, //set it true, so that user will not able to edit text
@@ -285,7 +332,7 @@ class _UpdateState extends State<Update> {
                           //you can implement different kind of Date Format here according to your requirement
 
                           setState(() {
-                            dateinput.text =
+                            _dobController.text =
                                 formattedDate; //set output date to TextField value.
                           });
                         } else {
@@ -317,13 +364,13 @@ class _UpdateState extends State<Update> {
                                 username: _usernameController.text,
                                 phone: _phoneController.text,
                                 address: _addressController.text,
-                                dob: dateinput.text,
+                                dob: _dobController.text,
                               );
                               _updateUser(user);
                             }
                           },
                           child: Text(
-                            "Register".toUpperCase(),
+                            "Update".toUpperCase(),
                           ),
                         ),
                       ),
@@ -346,7 +393,15 @@ class _UpdateState extends State<Update> {
   _displayMessage(bool isSignUp) {
     if (isSignUp) {
       displaySuccessMessage(context, "updated success");
-      Navigator.pushNamed(context, '/navigation');
+      Future.delayed(const Duration(milliseconds: 1500), () {
+        // Navigator.pushNamed(context, '/bottomNavBar');
+        Navigator.of(context).push(
+          MaterialPageRoute(
+              builder: (context) => const Navigation(
+                    index: 4,
+                  )),
+        );
+      });
     } else {
       displayErrorMessage(context, "update Failed");
     }

@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 
 class UserAPI {
   Future<bool> registerUser(User user) async {
-    bool isSignup = false;
+    bool isSignUp = false;
     Response response;
     var url = baseUrl + registerUrl;
     var dio = HttpServices().getDioInstance();
@@ -21,15 +21,16 @@ class UserAPI {
         url,
         data: user.toJson(),
       );
-      debugPrint(response.toString());
-      if (response.statusCode == 200) {
-        debugPrint("asds");
+      if (response.data["msg"] == "Email already exists") {
+        return false;
+      } else if (response.statusCode == 200) {
+        debugPrint(response.data["msg"].toString());
         return true;
       }
     } catch (e) {
       debugPrint(e.toString());
     }
-    return isSignup;
+    return isSignUp;
   }
 
   Future<bool> login(String email, String password) async {

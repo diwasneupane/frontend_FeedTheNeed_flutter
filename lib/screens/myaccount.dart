@@ -1,3 +1,5 @@
+import 'package:feedtheneed/model/profile.dart';
+import 'package:feedtheneed/repositories/user_repository.dart';
 import 'package:feedtheneed/screens/information.dart';
 import 'package:feedtheneed/screens/login.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,22 @@ class MyAccount extends StatefulWidget {
 }
 
 class _MyAccountState extends State<MyAccount> {
+  UserProfile? user;
+  @override
+  void initState() {
+    getUserDetails();
+    super.initState();
+  }
+
+  void getUserDetails() async {
+    UserProfile? user1 = await UserRepository().getUserDetails();
+
+    setState(() {
+      user = user1!;
+      debugPrint(user!.address.toString());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,33 +53,34 @@ class _MyAccountState extends State<MyAccount> {
         child: Column(
           children: [
             const SizedBox(height: 60),
-            Center(
-              child: Column(
-                children: const [
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundColor: Color.fromARGB(255, 81, 81, 81),
-                    child: CircleAvatar(
-                      radius: 38,
-                      backgroundImage: NetworkImage(
-                          'https://static01.nyt.com/images/2022/09/16/arts/16CAMERON1/16CAMERON1-videoSixteenByNine3000.jpg'),
+            if (user != null)
+              Center(
+                child: Column(
+                  children: [
+                    const CircleAvatar(
+                      radius: 40,
+                      backgroundColor: Color.fromARGB(255, 81, 81, 81),
+                      child: CircleAvatar(
+                        radius: 38,
+                        backgroundImage: NetworkImage(
+                            'https://static01.nyt.com/images/2022/09/16/arts/16CAMERON1/16CAMERON1-videoSixteenByNine3000.jpg'),
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    'John Snow',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                    const SizedBox(height: 10),
+                    Text(
+                      user!.username == null ? "____" : "${user!.username}",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'johnsnow@gmail.com',
-                    style: TextStyle(color: Colors.grey),
-                  )
-                ],
+                    Text(
+                      user!.email!,
+                      style: const TextStyle(color: Colors.grey),
+                    )
+                  ],
+                ),
               ),
-            ),
             const SizedBox(height: 60),
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -169,7 +188,7 @@ class _MyAccountState extends State<MyAccount> {
                                   Color.fromARGB(255, 241, 250, 253),
                               radius: 27,
                               child: Icon(
-                                Icons.logout_outlined,
+                                Icons.password_outlined,
                                 color: Color(0xFF41A2CD),
                               ),
                             ),
