@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:http_parser/http_parser.dart';
 import 'package:dio/dio.dart';
 import 'package:feedtheneed/api/http_services.dart';
 import 'package:feedtheneed/model/profile.dart';
@@ -87,11 +87,10 @@ class UserAPI {
     return user;
   }
 
-  Future<bool> updateUserProfile(UserProfile userProfile) async {
-    // String fileName = image!.path.split('/').last;
-    // debugPrint("FileName: " + fileName);
-    // debugPrint("Image Path: " + image.path.toString());
-    debugPrint("Use Update: ${userProfile.firstname!}");
+  Future<bool> updateUserProfile(UserProfile userProfile, File? image) async {
+    String fileName = image!.path.split('/').last;
+    debugPrint("FileName: $fileName");
+    debugPrint("Image Path: ${image.path}");
     bool isUpdated = false;
     FormData data = FormData.fromMap({
       "firstname": userProfile.firstname,
@@ -101,11 +100,13 @@ class UserAPI {
       "phone": userProfile.phone,
       "address": userProfile.address,
       "dob": userProfile.dob,
-      // "pat_img": await MultipartFile.fromFile(
-      //   image.path,
-      //   filename: fileName,
-      // ),
+      "picture": await MultipartFile.fromFile(
+        image.path,
+        filename: fileName,
+        contentType: MediaType("image", "jpg"),
+      ),
     });
+    debugPrint(data.toString());
     try {
       var url = baseUrl + update;
       var dio = HttpServices().getDioInstance();

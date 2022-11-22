@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:feedtheneed/model/profile.dart';
 import 'package:feedtheneed/repositories/user_repository.dart';
 import 'package:feedtheneed/screens/navigation.dart';
+import 'package:feedtheneed/utils/api_url.dart';
 import 'package:feedtheneed/utils/showmessages.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 class Update extends StatefulWidget {
@@ -25,6 +29,22 @@ class _UpdateState extends State<Update> {
   // TextEditingController dateinput = TextEditingController();
   //text editing controller for text field
 
+  File? img;
+  Future _loadImage(ImageSource imageSource) async {
+    try {
+      final image = await ImagePicker().pickImage(source: imageSource);
+      if (image != null) {
+        setState(() {
+          img = File(image.path);
+        });
+      } else {
+        return;
+      }
+    } catch (e) {
+      debugPrint('Failed to pick Image $e');
+    }
+  }
+
   UserProfile? user;
   @override
   void initState() {
@@ -37,6 +57,7 @@ class _UpdateState extends State<Update> {
 
     setState(() {
       user = user1!;
+      debugPrint(user!.picture.toString());
       if (user != null) {
         _firstnameController.text = user!.firstname!;
         _lastnameController.text = user!.lastname!;
@@ -85,26 +106,86 @@ class _UpdateState extends State<Update> {
               const SizedBox(
                 height: 40,
               ),
-              // if (user != null)
-              Center(
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(48.0),
-                      boxShadow: const [
-                        BoxShadow(color: Colors.white70, blurRadius: 20.0)
-                      ]),
-                  child: CircleAvatar(
-                    radius: 45,
-                    backgroundColor: const Color(0xFF41A2CD),
-                    child: Padding(
-                      padding: const EdgeInsets.all(3), // Border radius
-                      child: ClipOval(
-                          child: Image.network(
-                              'https://pyxis.nymag.com/v1/imgs/51b/28a/622789406b8850203e2637d657d5a0e0c3-avatar-rerelease.1x.rsquare.w1400.jpg')),
+              if (user != null)
+                Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(48.0),
+                        boxShadow: const [
+                          BoxShadow(color: Colors.white70, blurRadius: 20.0)
+                        ]),
+                    child: Stack(
+                      children: [
+                        // if (img != null)
+                        SizedBox(
+                          child: CircleAvatar(
+                            backgroundImage: img != null
+                                ? FileImage(img!) as ImageProvider
+                                : user!.picture == null
+                                    ? const NetworkImage(
+                                        "https://w.wallhaven.cc/full/v9/wallhaven-v9kw9l.jpg")
+                                    : NetworkImage(baseUrl + user!.picture!),
+                            radius: 0,
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                width: 4,
+                                color:
+                                    Theme.of(context).scaffoldBackgroundColor,
+                              ),
+                              color: Colors.grey[200],
+                            ),
+                            child: InkWell(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    context: context,
+                                    builder: (context) {
+                                      return Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          ListTile(
+                                            leading: const Icon(
+                                                Icons.browse_gallery_outlined),
+                                            title: const Text('Gallery'),
+                                            onTap: () {
+                                              _loadImage(ImageSource.gallery);
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                          ListTile(
+                                            leading: const Icon(
+                                                Icons.camera_alt_outlined),
+                                            title: const Text('Camera'),
+                                            onTap: () {
+                                              _loadImage(ImageSource.camera);
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    });
+                              }
+// _loadImage(ImageSource.camera);
+                              ,
+                              child: const Icon(
+                                Icons.edit,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),
-              ),
               const SizedBox(
                 height: 10,
               ),
@@ -386,7 +467,7 @@ class _UpdateState extends State<Update> {
   }
 
   _updateUser(UserProfile user) async {
-    bool isSignUp = await UserRepository().updateUserProfile(user);
+    bool isSignUp = await UserRepository().updateUserProfile(user, img);
     _displayMessage(isSignUp);
   }
 

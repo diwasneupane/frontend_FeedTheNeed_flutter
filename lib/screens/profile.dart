@@ -4,6 +4,7 @@ import 'package:feedtheneed/screens/helpandsupport.dart';
 import 'package:feedtheneed/screens/login.dart';
 import 'package:feedtheneed/screens/myaccount.dart';
 import 'package:feedtheneed/screens/update_profile.dart';
+import 'package:feedtheneed/utils/api_url.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -71,13 +72,15 @@ class _ProfileState extends State<Profile> {
                     ),
                     child: Center(
                       child: ListTile(
-                        leading: const CircleAvatar(
+                        leading: CircleAvatar(
                           radius: 30,
                           backgroundColor: Colors.white,
                           child: CircleAvatar(
                             radius: 27,
-                            backgroundImage: NetworkImage(
-                                'https://static01.nyt.com/images/2022/09/16/arts/16CAMERON1/16CAMERON1-videoSixteenByNine3000.jpg'),
+                            backgroundImage: user!.picture == null
+                                ? const NetworkImage(
+                                    "https://w.wallhaven.cc/full/v9/wallhaven-v9kw9l.jpg")
+                                : NetworkImage(baseUrl + user!.picture!),
                           ),
                         ),
                         title: Text(

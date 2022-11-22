@@ -2,6 +2,7 @@ import 'package:feedtheneed/model/profile.dart';
 import 'package:feedtheneed/repositories/user_repository.dart';
 import 'package:feedtheneed/screens/information.dart';
 import 'package:feedtheneed/screens/login.dart';
+import 'package:feedtheneed/utils/api_url.dart';
 import 'package:flutter/material.dart';
 
 class MyAccount extends StatefulWidget {
@@ -57,13 +58,15 @@ class _MyAccountState extends State<MyAccount> {
               Center(
                 child: Column(
                   children: [
-                    const CircleAvatar(
-                      radius: 40,
-                      backgroundColor: Color.fromARGB(255, 81, 81, 81),
+                    CircleAvatar(
+                      radius: 80,
+                      backgroundColor: const Color.fromARGB(255, 81, 81, 81),
                       child: CircleAvatar(
-                        radius: 38,
-                        backgroundImage: NetworkImage(
-                            'https://static01.nyt.com/images/2022/09/16/arts/16CAMERON1/16CAMERON1-videoSixteenByNine3000.jpg'),
+                        radius: 78,
+                        backgroundImage: user!.picture == null
+                            ? const NetworkImage(
+                                "https://w.wallhaven.cc/full/v9/wallhaven-v9kw9l.jpg")
+                            : NetworkImage(baseUrl + user!.picture!),
                       ),
                     ),
                     const SizedBox(height: 10),

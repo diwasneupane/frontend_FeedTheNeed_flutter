@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:feedtheneed/model/profile.dart';
 
 import '/api/user_api.dart';
@@ -16,7 +18,7 @@ class UserRepository {
     return await UserAPI().getUserDetails();
   }
 
-  Future<bool> updateUserProfile(UserProfile userProfile) async {
-    return await UserAPI().updateUserProfile(userProfile);
+  Future<bool> updateUserProfile(UserProfile userProfile, File? image) async {
+    return await UserAPI().updateUserProfile(userProfile, image);
   }
 }
