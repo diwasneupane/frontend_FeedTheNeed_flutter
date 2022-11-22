@@ -118,13 +118,17 @@ class _UpdateState extends State<Update> {
                       children: [
                         SizedBox(
                           child: CircleAvatar(
-                            backgroundImage: img != null
-                                ? FileImage(img!) as ImageProvider
-                                : user!.picture == null
-                                    ? const NetworkImage(
-                                        "https://w.wallhaven.cc/full/v9/wallhaven-v9kw9l.jpg")
-                                    : NetworkImage(baseUrl + user!.picture!),
                             radius: 80,
+                            backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+                            child: CircleAvatar(
+                              radius: 78,
+                              backgroundImage: img != null
+                                  ? FileImage(img!) as ImageProvider
+                                  : user!.picture == null
+                                      ? const NetworkImage(
+                                          "https://w.wallhaven.cc/full/v9/wallhaven-v9kw9l.jpg")
+                                      : NetworkImage(baseUrl + user!.picture!),
+                            ),
                           ),
                         ),
                         Positioned(
