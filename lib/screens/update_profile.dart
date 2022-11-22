@@ -116,7 +116,6 @@ class _UpdateState extends State<Update> {
                         ]),
                     child: Stack(
                       children: [
-                        // if (img != null)
                         SizedBox(
                           child: CircleAvatar(
                             backgroundImage: img != null
@@ -125,7 +124,7 @@ class _UpdateState extends State<Update> {
                                     ? const NetworkImage(
                                         "https://w.wallhaven.cc/full/v9/wallhaven-v9kw9l.jpg")
                                     : NetworkImage(baseUrl + user!.picture!),
-                            radius: 0,
+                            radius: 80,
                           ),
                         ),
                         Positioned(
@@ -172,9 +171,7 @@ class _UpdateState extends State<Update> {
                                         ],
                                       );
                                     });
-                              }
-// _loadImage(ImageSource.camera);
-                              ,
+                              },
                               child: const Icon(
                                 Icons.edit,
                                 color: Colors.black,
