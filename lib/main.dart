@@ -1,3 +1,5 @@
+import 'package:feedtheneed/screens/blog.dart';
+import 'package:feedtheneed/screens/blog_description.dart';
 import 'package:feedtheneed/screens/contactUs.dart';
 import 'package:feedtheneed/screens/dashboard.dart';
 import 'package:feedtheneed/screens/helpandsupport.dart';
@@ -27,6 +29,8 @@ void main() {
         '/helpandsupport': (context) => const Helpandsupport(),
         '/information': (context) => const Information(),
         '/contact': (context) => const ContactUs(),
+        '/blog': (context) => const Blog(),
+        '/blogdescription': (context) => const BlogDescription(),
       },
     ),
   );
