@@ -50,6 +50,9 @@ dependencies:
   # modal_bottom_sheet: ^2.1.2
   modal_bottom_sheet: ^2.1.2
   getwidget: ^3.0.1
+  google_maps: ^6.2.0
+  google_maps_flutter: ^2.2.1
+  flutter_polyline_points: ^1.0.0
 
 dev_dependencies:
   flutter_test:
