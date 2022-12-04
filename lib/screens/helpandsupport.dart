@@ -1,4 +1,5 @@
 import 'package:feedtheneed/screens/contactUs.dart';
+import 'package:feedtheneed/screens/map.dart';
 import 'package:flutter/material.dart';
 
 class Helpandsupport extends StatefulWidget {
@@ -135,7 +136,12 @@ class _HelpandsupportState extends State<Helpandsupport> {
                                 color: Colors.blueGrey, fontSize: 10)),
                         trailing: IconButton(
                           onPressed: () {
-                            //action coe when button is pressed
+                            //  _loadImage(ImageSource.gallery);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Map()),
+                            );
                           },
                           icon: const Icon(
                             Icons.keyboard_arrow_right_outlined,
