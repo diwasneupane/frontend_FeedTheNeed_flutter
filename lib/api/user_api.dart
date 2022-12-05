@@ -69,7 +69,7 @@ class UserAPI {
       var dio = HttpServices().getDioInstance();
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? token = prefs.getString("token");
-      debugPrint("Token123: ${token!}");
+      debugPrint("Token1274743: ${token!}");
       var response = await dio.get(
         url,
         options: Options(
@@ -88,24 +88,42 @@ class UserAPI {
   }
 
   Future<bool> updateUserProfile(UserProfile userProfile, File? image) async {
-    String fileName = image!.path.split('/').last;
-    debugPrint("FileName: $fileName");
-    debugPrint("Image Path: ${image.path}");
+    String? fileName;
+    if (image != null) {
+      fileName = image.path.split('/').last;
+    } else {
+      fileName = null;
+    }
+    // debugPrint("FileName: $fileName");
+    // debugPrint("Image Path: ${image!.path}");
     bool isUpdated = false;
-    FormData data = FormData.fromMap({
-      "firstname": userProfile.firstname,
-      "lastname": userProfile.lastname,
-      // "age": userProfile.age,
-      "username": userProfile.username,
-      "phone": userProfile.phone,
-      "address": userProfile.address,
-      "dob": userProfile.dob,
-      "picture": await MultipartFile.fromFile(
-        image.path,
-        filename: fileName,
-        contentType: MediaType("image", "jpg"),
-      ),
-    });
+    FormData data = image != null
+        ? FormData.fromMap({
+            "firstname": userProfile.firstname,
+            "lastname": userProfile.lastname,
+            // "age": userProfile.age,
+            "username": userProfile.username,
+            "phone": userProfile.phone,
+            "address": userProfile.address,
+            "dob": userProfile.dob,
+            "picture": await MultipartFile.fromFile(
+              image.path,
+              filename: fileName,
+              contentType: MediaType(
+                "image",
+                "jpeg",
+              ),
+            ),
+          })
+        : FormData.fromMap({
+            "firstname": userProfile.firstname,
+            "lastname": userProfile.lastname,
+            // "age": userProfile.age,
+            "username": userProfile.username,
+            "phone": userProfile.phone,
+            "address": userProfile.address,
+            "dob": userProfile.dob,
+          });
     debugPrint(data.toString());
     try {
       var url = baseUrl + update;

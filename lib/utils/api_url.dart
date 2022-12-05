@@ -6,5 +6,6 @@ const registerUrl = "user/insert";
 const profile = "user/profile";
 const update = "user/update";
 const contact = "contact";
+const map = "map";
 
 String? token;
