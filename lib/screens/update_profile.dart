@@ -57,7 +57,7 @@ class _UpdateState extends State<Update> {
 
     setState(() {
       user = user1!;
-      debugPrint(user!.picture.toString());
+      // debugPrint(user!.picture.toString());
       if (user != null) {
         _firstnameController.text = user!.firstname!;
         _lastnameController.text = user!.lastname!;
@@ -106,87 +106,89 @@ class _UpdateState extends State<Update> {
               const SizedBox(
                 height: 40,
               ),
-              if (user != null)
-                Center(
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(48.0),
-                        boxShadow: const [
-                          BoxShadow(color: Colors.white70, blurRadius: 20.0)
-                        ]),
-                    child: Stack(
-                      children: [
-                        SizedBox(
+              // if (user != null)
+              Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(48.0),
+                      boxShadow: const [
+                        BoxShadow(color: Colors.white70, blurRadius: 20.0)
+                      ]),
+                  child: Stack(
+                    children: [
+                      SizedBox(
+                        child: CircleAvatar(
+                          radius: 80,
+                          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
                           child: CircleAvatar(
-                            radius: 80,
-                            backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-                            child: CircleAvatar(
-                              radius: 78,
-                              backgroundImage: img != null
-                                  ? FileImage(img!) as ImageProvider
-                                  : user!.picture == null
-                                      ? const NetworkImage(
-                                          "https://w.wallhaven.cc/full/v9/wallhaven-v9kw9l.jpg")
-                                      : NetworkImage(baseUrl + user!.picture!),
+                            radius: 78,
+                            backgroundImage: img != null
+                                ? FileImage(img!) as ImageProvider
+                                : user != null
+                                    ? user!.picture == null
+                                        ? const NetworkImage(
+                                            "https://w.wallhaven.cc/full/v9/wallhaven-v9kw9l.jpg")
+                                        : NetworkImage(baseUrl + user!.picture!)
+                                    : const NetworkImage(
+                                        "https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bGlvbiUyMGtpbmd8ZW58MHx8MHx8&w=1000&q=80"),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              width: 4,
+                              color: Theme.of(context).scaffoldBackgroundColor,
+                            ),
+                            color: Colors.grey[200],
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) {
+                                    return Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        ListTile(
+                                          leading: const Icon(
+                                              Icons.browse_gallery_outlined),
+                                          title: const Text('Gallery'),
+                                          onTap: () {
+                                            _loadImage(ImageSource.gallery);
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                        ListTile(
+                                          leading: const Icon(
+                                              Icons.camera_alt_outlined),
+                                          title: const Text('Camera'),
+                                          onTap: () {
+                                            _loadImage(ImageSource.camera);
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            },
+                            child: const Icon(
+                              Icons.edit,
+                              color: Colors.black,
                             ),
                           ),
                         ),
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                width: 4,
-                                color:
-                                    Theme.of(context).scaffoldBackgroundColor,
-                              ),
-                              color: Colors.grey[200],
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                showModalBottomSheet(
-                                    context: context,
-                                    builder: (context) {
-                                      return Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          ListTile(
-                                            leading: const Icon(
-                                                Icons.browse_gallery_outlined),
-                                            title: const Text('Gallery'),
-                                            onTap: () {
-                                              _loadImage(ImageSource.gallery);
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                          ListTile(
-                                            leading: const Icon(
-                                                Icons.camera_alt_outlined),
-                                            title: const Text('Camera'),
-                                            onTap: () {
-                                              _loadImage(ImageSource.camera);
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                        ],
-                                      );
-                                    });
-                              },
-                              child: const Icon(
-                                Icons.edit,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
+                      )
+                    ],
                   ),
                 ),
+              ),
               const SizedBox(
                 height: 10,
               ),

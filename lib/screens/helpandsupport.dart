@@ -125,7 +125,7 @@ class _HelpandsupportState extends State<Helpandsupport> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const Map(),
+                              builder: (context) => const MapScreen(),
                             ),
                           );
                         },
@@ -155,7 +155,7 @@ class _HelpandsupportState extends State<Helpandsupport> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const Map()),
+                                    builder: (context) => const MapScreen()),
                               );
                             },
                             icon: const Icon(
