@@ -71,7 +71,9 @@ class _MyAccountState extends State<MyAccount> {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      user!.username == null ? "____" : "${user!.username}",
+                      user!.username == null
+                          ? "Update Your Username"
+                          : "${user!.username}",
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -140,7 +142,12 @@ class _MyAccountState extends State<MyAccount> {
                                   color: Colors.blueGrey, fontSize: 10)),
                           trailing: IconButton(
                             onPressed: () {
-                              //action coe when button is pressed
+                              //  _loadImage(ImageSource.gallery);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Information()),
+                              );
                             },
                             icon: const Icon(
                               Icons.keyboard_arrow_right_outlined,

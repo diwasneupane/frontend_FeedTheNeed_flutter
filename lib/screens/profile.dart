@@ -90,7 +90,9 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                         subtitle: Text(
-                          user!.username == null ? "____" : "${user!.username}",
+                          user!.username == null
+                              ? "Update your username"
+                              : "${user!.username}",
                           style: const TextStyle(color: Colors.white),
                         ),
                         trailing: IconButton(
@@ -325,7 +327,13 @@ class _ProfileState extends State<Profile> {
                             ),
                             trailing: IconButton(
                               onPressed: () {
-                                //action coe when button is pressed
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const Helpandsupport(),
+                                  ),
+                                );
                               },
                               icon: const Icon(
                                 Icons.keyboard_arrow_right_outlined,

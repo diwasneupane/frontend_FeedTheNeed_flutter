@@ -76,8 +76,8 @@ class UserAPI {
           headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
         ),
       );
-      debugPrint("sssss");
-      debugPrint("Response123: ${response.data}");
+      // debugPrint("sssss");
+      // debugPrint("Response123: ${response.data}");
       if (response.statusCode == 200) {
         user = UserProfile.fromJson(response.data);
       }

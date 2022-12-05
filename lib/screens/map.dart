@@ -13,8 +13,19 @@ class Map extends StatefulWidget {
 class _MapState extends State<Map> {
   GoogleMapController? mapController;
   Set<Marker> markers = {};
-  LatLng myLocation = const LatLng(27.7062257, 85.3298821);
-  LatLng myLocation1 = const LatLng(27.70622, 85.33064);
+  LatLng myLocation = const LatLng(27.6980, 85.3239);
+  // LatLng myLocation1 = const LatLng(27.70622, 85.33064);
+  @override
+  MapType _currentMapType = MapType.normal;
+
+  void _onMapTypeButtonPressed() {
+    setState(() {
+      _currentMapType = _currentMapType == MapType.normal
+          ? MapType.satellite
+          : MapType.normal;
+    });
+  }
+
   @override
   void initState() {
     markers.add(
@@ -28,15 +39,6 @@ class _MapState extends State<Map> {
         icon: BitmapDescriptor.defaultMarker,
       ),
     );
-    markers.add(Marker(
-      markerId: MarkerId(myLocation1.toString()),
-      position: myLocation1,
-      infoWindow: const InfoWindow(
-        title: 'Gadget_Guru',
-        snippet: 'Electronic Store',
-      ),
-      icon: BitmapDescriptor.defaultMarker,
-    ));
 
     super.initState();
   }
@@ -45,6 +47,7 @@ class _MapState extends State<Map> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(
           "Meet us here",
           style: TextStyle(color: Colors.black),
@@ -54,7 +57,7 @@ class _MapState extends State<Map> {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: Colors.grey,
+            color: Colors.black,
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -65,13 +68,14 @@ class _MapState extends State<Map> {
       body: Stack(
         children: [
           GoogleMap(
+            mapType: _currentMapType,
             zoomGesturesEnabled: true,
             initialCameraPosition: CameraPosition(
               target: myLocation,
-              zoom: 16,
+              zoom: 17,
             ),
             markers: markers,
-            mapType: MapType.normal,
+            // mapType: MapType.normal,
             onMapCreated: (controller) {
               setState(() {
                 mapController = controller;
@@ -84,7 +88,8 @@ class _MapState extends State<Map> {
               alignment: Alignment.topRight,
               // add your floating action button
               child: FloatingActionButton(
-                onPressed: () {},
+                backgroundColor: const Color(0xFF41A2CD),
+                onPressed: _onMapTypeButtonPressed,
                 child: const Icon(Icons.map),
               ),
             ),

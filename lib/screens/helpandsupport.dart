@@ -105,7 +105,12 @@ class _HelpandsupportState extends State<Helpandsupport> {
                                   color: Colors.blueGrey, fontSize: 10)),
                           trailing: IconButton(
                             onPressed: () {
-                              //action coe when button is pressed
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const ContactUs(),
+                                ),
+                              );
                             },
                             icon: const Icon(
                               Icons.keyboard_arrow_right_outlined,
@@ -115,37 +120,48 @@ class _HelpandsupportState extends State<Helpandsupport> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      ListTile(
-                        leading: const CircleAvatar(
-                          radius: 30,
-                          backgroundColor: Colors.white,
-                          child: CircleAvatar(
-                            backgroundColor: Color.fromARGB(255, 241, 250, 253),
-                            radius: 27,
-                            child: Icon(
-                              Icons.location_pin,
-                              color: Color(0xFF41A2CD),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Map(),
+                            ),
+                          );
+                        },
+                        child: ListTile(
+                          leading: const CircleAvatar(
+                            radius: 30,
+                            backgroundColor: Colors.white,
+                            child: CircleAvatar(
+                              backgroundColor:
+                                  Color.fromARGB(255, 241, 250, 253),
+                              radius: 27,
+                              child: Icon(
+                                Icons.location_pin,
+                                color: Color(0xFF41A2CD),
+                              ),
                             ),
                           ),
-                        ),
-                        title: const Text(
-                          "Our Location",
-                        ),
-                        subtitle: const Text("See us at our door steps",
-                            style: TextStyle(
-                                color: Colors.blueGrey, fontSize: 10)),
-                        trailing: IconButton(
-                          onPressed: () {
-                            //  _loadImage(ImageSource.gallery);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Map()),
-                            );
-                          },
-                          icon: const Icon(
-                            Icons.keyboard_arrow_right_outlined,
-                            color: Colors.blueGrey,
+                          title: const Text(
+                            "Our Location",
+                          ),
+                          subtitle: const Text("See us at our door steps",
+                              style: TextStyle(
+                                  color: Colors.blueGrey, fontSize: 10)),
+                          trailing: IconButton(
+                            onPressed: () {
+                              //  _loadImage(ImageSource.gallery);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Map()),
+                              );
+                            },
+                            icon: const Icon(
+                              Icons.keyboard_arrow_right_outlined,
+                              color: Colors.blueGrey,
+                            ),
                           ),
                         ),
                       ),
