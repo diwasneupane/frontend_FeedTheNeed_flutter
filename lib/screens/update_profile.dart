@@ -216,6 +216,7 @@ class _UpdateState extends State<Update> {
                 child: Column(
                   children: [
                     TextFormField(
+                      key: const ValueKey('fname'),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please Enter Your First name';
@@ -247,9 +248,10 @@ class _UpdateState extends State<Update> {
                       height: 20,
                     ),
                     TextFormField(
+                      key: const ValueKey('lname'),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Please Enter Your First name';
+                          return 'Please Enter Your Last name';
                         }
                         return null;
                       },
@@ -277,6 +279,7 @@ class _UpdateState extends State<Update> {
                       height: 20, //<-- SEE HERE
                     ),
                     TextFormField(
+                      key: const ValueKey('username'),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please Enter Your Username';
@@ -307,6 +310,7 @@ class _UpdateState extends State<Update> {
                       height: 20, //<-- SEE HERE
                     ),
                     TextFormField(
+                      key: const ValueKey('addres'),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please Enter Your Address';
@@ -337,6 +341,7 @@ class _UpdateState extends State<Update> {
                       height: 20, //<-- SEE HERE
                     ),
                     TextFormField(
+                        key: const ValueKey('phone'),
                         controller: _phoneController,
                         textAlign: TextAlign.left,
                         decoration: InputDecoration(
@@ -373,6 +378,8 @@ class _UpdateState extends State<Update> {
                       height: 20, //<-- SEE HERE
                     ),
                     TextFormField(
+                      // key: const ValueKey('dob'),
+
                       // controller: _dobController,
                       textAlign: TextAlign.left,
                       keyboardType: TextInputType.text,
@@ -430,6 +437,7 @@ class _UpdateState extends State<Update> {
                         width: double.infinity,
                         height: 45,
                         child: ElevatedButton(
+                          key: const ValueKey('btnUpdate'),
                           style: ButtonStyle(
                               foregroundColor: MaterialStateProperty.all<Color>(
                                   Colors.white),

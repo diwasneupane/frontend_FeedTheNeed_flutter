@@ -54,6 +54,9 @@ dependencies:
   google_maps_flutter: ^2.2.1
   flutter_polyline_points: ^1.0.0
   stories_for_flutter: ^1.2.0
+  im_stepper: ^1.0.1+1
+  fl_chart: ^0.55.2
+  syncfusion_flutter_charts: ^20.3.60
   
 
 dev_dependencies:

@@ -13,8 +13,9 @@ class Register extends StatefulWidget {
   State<Register> createState() => _RegisterState();
 }
 
+final TextEditingController _passwordController = TextEditingController();
+
 class _RegisterState extends State<Register> {
-  final TextEditingController _passwordController = TextEditingController();
   bool success = false;
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
@@ -72,6 +73,7 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
                 TextFormField(
+                  key: const ValueKey('email'),
                   validator: (email) =>
                       email != null && !EmailValidator.validate(email)
                           ? 'Enter a valid email'
@@ -105,6 +107,7 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
                 TextFormField(
+                    key: const ValueKey('phone'),
                     controller: _phoneController,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -146,6 +149,7 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
                 TextFormField(
+                  key: const ValueKey('password'),
                   validator: (value) {
                     if (success == false) {
                       return 'Please fullfill necessary requirements';
@@ -182,7 +186,7 @@ class _RegisterState extends State<Register> {
                 ),
 
                 const SizedBox(
-                  height: 20,
+                  height: 5,
                 ),
                 FlutterPwValidator(
                   controller: _passwordController,
@@ -230,6 +234,7 @@ class _RegisterState extends State<Register> {
                     width: double.infinity,
                     height: 45,
                     child: ElevatedButton(
+                      key: const ValueKey('btnSignup'),
                       style: ButtonStyle(
                           foregroundColor:
                               MaterialStateProperty.all<Color>(Colors.white),

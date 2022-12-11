@@ -77,6 +77,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 TextFormField(
+                  key: const ValueKey('email'),
                   keyboardType: TextInputType.emailAddress,
                   validator: (email) =>
                       email != null && !EmailValidator.validate(email)
@@ -117,6 +118,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 TextFormField(
+                  key: const ValueKey('password'),
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'Please Enter Your Password';

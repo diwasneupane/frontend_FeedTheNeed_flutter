@@ -75,6 +75,7 @@ class _HelpandsupportState extends State<Helpandsupport> {
                         height: 30,
                       ),
                       InkWell(
+                        key: const ValueKey('contactus'),
                         onTap: () {
                           Navigator.push(
                             context,
@@ -121,6 +122,7 @@ class _HelpandsupportState extends State<Helpandsupport> {
                       ),
                       const SizedBox(height: 10),
                       InkWell(
+                        key: const ValueKey('mapview'),
                         onTap: () {
                           Navigator.push(
                             context,
