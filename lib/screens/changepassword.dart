@@ -8,6 +8,10 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
+  final _globalKey = GlobalKey<FormState>();
+  bool _isHidden = true;
+  bool success = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,120 +34,179 @@ class _ChangePasswordState extends State<ChangePassword> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Center(
-              child: CircleAvatar(
-                radius: 90.0,
-                backgroundColor: Colors.transparent,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(5.0),
-                  child: Image.asset('assets/images/logo.png'),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Center(
+                child: CircleAvatar(
+                  radius: 90.0,
+                  backgroundColor: Colors.transparent,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5.0),
+                    child: Image.asset('assets/images/logo.png'),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Form(
-              child: SizedBox(
-                height: 230,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    TextFormField(
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please Enter Your Current password';
-                        }
-                        return null;
-                      },
-                      // controller: _firstnameController,
-                      textAlign: TextAlign.left,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        icon: const Icon(Icons.password_outlined),
-                        // icon: const Icon(Icons.calendar_today),
-                        hintText: 'Enter Your Current Password',
-                        hintStyle: const TextStyle(
-                          fontSize: 16,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
-                          ),
-                        ),
-                        filled: true,
-                        contentPadding: const EdgeInsets.all(16),
-                      ),
-                    ),
-                    TextFormField(
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please Enter Your New password';
-                        }
-                        return null;
-                      },
-                      // controller: _firstnameController,
-                      textAlign: TextAlign.left,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        icon: const Icon(Icons.password_outlined),
-                        // icon: const Icon(Icons.calendar_today),
-                        hintText: 'Enter Your New Password',
-                        hintStyle: const TextStyle(
-                          fontSize: 16,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
-                          ),
-                        ),
-                        filled: true,
-                        contentPadding: const EdgeInsets.all(16),
-                      ),
-                    ),
-                    TextFormField(
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please Re-Enter Your New password';
-                        }
-                        return null;
-                      },
-                      // controller: _firstnameController,
-                      textAlign: TextAlign.left,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        icon: const Icon(Icons.password_outlined),
-                        // icon: const Icon(Icons.calendar_today),
-                        hintText: 'Re-Enter Your New Password',
-                        hintStyle: const TextStyle(
-                          fontSize: 16,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
-                          ),
-                        ),
-                        filled: true,
-                        contentPadding: const EdgeInsets.all(16),
-                      ),
-                    ),
-                  ],
-                ),
+              const SizedBox(
+                height: 30,
               ),
-            )
-          ],
+              Form(
+                key: _globalKey,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    height: 400,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Center(
+                          child: TextFormField(
+                            key: const ValueKey('password'),
+                            validator: (value) {
+                              if (success == false) {
+                                return 'Please fullfill necessary requirements';
+                              }
+                              return null;
+                            },
+                            obscureText: _isHidden,
+                            textAlign: TextAlign.left,
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              hintText: 'Enter Your current Password',
+                              prefixIcon: const Icon(Icons.password),
+                              suffix: InkWell(
+                                onTap: _togglePasswordView,
+                                child: const Icon(Icons.visibility),
+                              ),
+                              hintStyle: const TextStyle(
+                                  fontSize: 16, color: Colors.grey),
+                              floatingLabelStyle: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50),
+                                borderSide: const BorderSide(
+                                  width: 0,
+                                  style: BorderStyle.none,
+                                ),
+                              ),
+                              filled: true,
+                              contentPadding: const EdgeInsets.all(16),
+                            ),
+                          ),
+                        ),
+                        TextFormField(
+                          validator: (value) {
+                            if (success == false) {
+                              return 'Please fullfill necessary requirements';
+                            }
+                            return null;
+                          },
+                          obscureText: _isHidden,
+                          textAlign: TextAlign.left,
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            hintText: 'Enter your new Password',
+                            prefixIcon: const Icon(Icons.password),
+                            suffix: InkWell(
+                              onTap: _togglePasswordView,
+                              child: const Icon(Icons.visibility),
+                            ),
+                            hintStyle: const TextStyle(
+                                fontSize: 16, color: Colors.grey),
+                            floatingLabelStyle: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50),
+                              borderSide: const BorderSide(
+                                width: 0,
+                                style: BorderStyle.none,
+                              ),
+                            ),
+                            filled: true,
+                            contentPadding: const EdgeInsets.all(16),
+                          ),
+                        ),
+                        TextFormField(
+                          validator: (value) {
+                            if (success == false) {
+                              return 'Please fullfill necessary requirements';
+                            }
+                            return null;
+                          },
+                          obscureText: _isHidden,
+                          textAlign: TextAlign.left,
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            hintText: 'Re-Enter your new Password',
+                            prefixIcon: const Icon(Icons.password),
+                            suffix: InkWell(
+                              onTap: _togglePasswordView,
+                              child: const Icon(Icons.visibility),
+                            ),
+                            hintStyle: const TextStyle(
+                                fontSize: 16, color: Colors.grey),
+                            floatingLabelStyle: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50),
+                              borderSide: const BorderSide(
+                                width: 0,
+                                style: BorderStyle.none,
+                              ),
+                            ),
+                            filled: true,
+                            contentPadding: const EdgeInsets.all(16),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 40,
+                          width: 150,
+                          child: ElevatedButton(
+                            key: const ValueKey('btnUpdate'),
+                            style: ButtonStyle(
+                                foregroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.white),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        const Color(0xff41A2CD)),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ))),
+                            onPressed: () {
+                              if (_globalKey.currentState!.validate()) {}
+                            },
+                            child: const Text(
+                              "Update",
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  void _togglePasswordView() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
   }
 }
