@@ -1,7 +1,7 @@
 import 'package:feedtheneed/model/profile.dart';
 import 'package:feedtheneed/repositories/user_repository.dart';
+import 'package:feedtheneed/screens/changepassword.dart';
 import 'package:feedtheneed/screens/information.dart';
-import 'package:feedtheneed/screens/login.dart';
 import 'package:feedtheneed/utils/api_url.dart';
 import 'package:flutter/material.dart';
 
@@ -111,6 +111,7 @@ class _MyAccountState extends State<MyAccount> {
                         height: 30,
                       ),
                       InkWell(
+                        key: const ValueKey('information'),
                         onTap: () {
                           Navigator.push(
                             context,
@@ -215,7 +216,8 @@ class _MyAccountState extends State<MyAccount> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const Login()),
+                                    builder: (context) =>
+                                        const ChangePassword()),
                               ); //action coe when button is pressed
                             },
                             icon: const Icon(

@@ -1,5 +1,6 @@
 import 'package:feedtheneed/model/profile.dart';
 import 'package:feedtheneed/repositories/user_repository.dart';
+import 'package:feedtheneed/screens/aboutus.dart';
 import 'package:feedtheneed/screens/helpandsupport.dart';
 import 'package:feedtheneed/screens/login.dart';
 import 'package:feedtheneed/screens/myaccount.dart';
@@ -137,6 +138,7 @@ class _ProfileState extends State<Profile> {
                           height: 20,
                         ),
                         InkWell(
+                          key: const ValueKey('account'),
                           onTap: () {
                             Navigator.push(
                               context,
@@ -300,6 +302,7 @@ class _ProfileState extends State<Profile> {
                           height: 20,
                         ),
                         InkWell(
+                          key: const ValueKey('helpandsupport'),
                           onTap: () {
                             Navigator.push(
                               context,
@@ -364,7 +367,11 @@ class _ProfileState extends State<Profile> {
                           ),
                           trailing: IconButton(
                             onPressed: () {
-                              //action coe when button is pressed
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const AboutUs(),
+                                  )); //action coe when button is pressed
                             },
                             icon: const Icon(
                               Icons.keyboard_arrow_right_outlined,
