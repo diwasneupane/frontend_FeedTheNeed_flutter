@@ -70,16 +70,16 @@ class _BlogDescriptionState extends State<BlogDescription> {
                             ),
                           ),
                           title: Text(
-                            "User Name",
+                            "Diwas Neupane",
                             style: TextStyle(
                               color: Colors.black,
                             ),
                           ),
                           subtitle: Text(
-                            "Category",
+                            "orphanage",
                             style: TextStyle(color: Colors.black),
                           ),
-                          trailing: Text('Amount(Rs)'),
+                          trailing: Text('2000'),
                         ),
                       );
                     },

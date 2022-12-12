@@ -16,17 +16,25 @@ class Blog {
   String? blog_desc;
   @JsonKey(name: 'blog_category')
   String? blog_category;
+  @JsonKey(name: 'blog_price')
+  String? blog_price;
   @JsonKey(name: 'blog_image')
   String? blog_image;
+  @JsonKey(name: 'donor_name')
+  String? donor_name;
+  @JsonKey(name: 'donor_image')
+  String? donor_image;
 
-  Blog({
-    this.id,
-    this.blog_name,
-    this.short_desc,
-    this.blog_desc,
-    this.blog_category,
-    this.blog_image,
-  });
+  Blog(
+      {this.id,
+      this.blog_name,
+      this.short_desc,
+      this.blog_desc,
+      this.blog_category,
+      this.blog_image,
+      this.blog_price,
+      this.donor_image,
+      this.donor_name});
 
   //1. flutter clean
   //2. flutter pub get
