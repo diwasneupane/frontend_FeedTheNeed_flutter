@@ -7,5 +7,6 @@ const profile = "user/profile";
 const update = "user/update";
 const contact = "contact";
 const map = "map";
+const blog = "blog";
 
 String? token;

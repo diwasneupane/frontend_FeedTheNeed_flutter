@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:im_stepper/stepper.dart';
 
 class AboutUs extends StatefulWidget {
-  const AboutUs({super.key});
+  const AboutUs({Key? key}) : super(key: key);
 
   @override
   State<AboutUs> createState() => _AboutUsState();
