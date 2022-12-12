@@ -1,5 +1,5 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:feedtheneed/screens/blog.dart';
+import 'package:feedtheneed/screens/blogscreen.dart';
 import 'package:feedtheneed/screens/dashboard.dart';
 import 'package:feedtheneed/screens/donate.dart';
 import 'package:feedtheneed/screens/donation_history.dart';
@@ -41,7 +41,7 @@ class _NavigationState extends State<Navigation> {
           Dashboard(),
           DonationHistory(),
           Donate(),
-          Blog(),
+          BlogScreen(),
           Profile(),
         ],
       ),

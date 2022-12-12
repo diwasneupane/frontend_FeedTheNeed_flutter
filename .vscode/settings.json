@@ -2,6 +2,7 @@
     "cSpell.words": [
         "aboutus",
         "blogdescription",
+        "blogid",
         "changepassword",
         "contactus",
         "feedtheneed",
@@ -16,6 +17,8 @@
         "mapview",
         "myaccount",
         "myaccout",
-        "Signup"
+        "Signup",
+        "singleblog",
+        "singleproduct"
     ]
 }

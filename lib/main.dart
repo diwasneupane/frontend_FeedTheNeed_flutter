@@ -1,5 +1,5 @@
 import 'package:feedtheneed/screens/aboutus.dart';
-import 'package:feedtheneed/screens/blog.dart';
+import 'package:feedtheneed/screens/blogscreen.dart';
 import 'package:feedtheneed/screens/blog_description.dart';
 import 'package:feedtheneed/screens/changepassword.dart';
 import 'package:feedtheneed/screens/contactUs.dart';
@@ -32,7 +32,7 @@ void main() {
         '/helpandsupport': (context) => const Helpandsupport(),
         '/information': (context) => const Information(),
         '/contact': (context) => const ContactUs(),
-        '/blog': (context) => const Blog(),
+        '/blog': (context) => const BlogScreen(),
         '/map': (context) => const MapScreen(),
         '/blogdescription': (context) => const BlogDescription(),
         '/aboutUs': (context) => const AboutUs(),
