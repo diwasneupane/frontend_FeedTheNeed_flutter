@@ -4,6 +4,7 @@ import 'package:feedtheneed/screens/blog_description.dart';
 import 'package:feedtheneed/screens/changepassword.dart';
 import 'package:feedtheneed/screens/contactUs.dart';
 import 'package:feedtheneed/screens/dashboard.dart';
+import 'package:feedtheneed/screens/email.dart';
 import 'package:feedtheneed/screens/helpandsupport.dart';
 import 'package:feedtheneed/screens/login.dart';
 import 'package:feedtheneed/screens/map.dart';
@@ -36,7 +37,8 @@ void main() {
         '/map': (context) => const MapScreen(),
         '/blogdescription': (context) => const BlogDescription(),
         '/aboutUs': (context) => const AboutUs(),
-        '/changepassword': (context) => const ChangePassword()
+        '/changepassword': (context) => const ChangePassword(),
+        '/email': (context) => const Email()
       },
     ),
   );

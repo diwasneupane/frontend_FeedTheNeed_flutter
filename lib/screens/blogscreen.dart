@@ -72,18 +72,18 @@ class _BlogScreenState extends State<BlogScreen> {
                           circlePadding: 2,
                           storyItemList: [
                             StoryItem(
-                                name: "First Story",
+                                name: "Kfc",
                                 thumbnail: const NetworkImage(
-                                  "https://assets.materialup.com/uploads/82eae29e-33b7-4ff7-be10-df432402b2b6/preview",
+                                  "https://upload.wikimedia.org/wikipedia/sco/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png",
                                 ),
                                 stories: [
                                   Scaffold(
                                     body: Container(
                                       decoration: const BoxDecoration(
                                         image: DecorationImage(
-                                          fit: BoxFit.cover,
+                                          // fit: BoxFit.cover,
                                           image: NetworkImage(
-                                            "https://wallpaperaccess.com/full/16568.png",
+                                            "https://upload.wikimedia.org/wikipedia/sco/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png",
                                           ),
                                         ),
                                       ),
@@ -93,9 +93,9 @@ class _BlogScreenState extends State<BlogScreen> {
                                     body: Container(
                                       decoration: const BoxDecoration(
                                         image: DecorationImage(
-                                          fit: BoxFit.cover,
+                                          // fit: BoxFit.cover,
                                           image: NetworkImage(
-                                            "https://i.pinimg.com/originals/2e/c6/b5/2ec6b5e14fe0cba0cb0aa5d2caeeccc6.jpg",
+                                            "https://seeklogo.com/images/K/KFC-_Kentucky_Fried_Chicken-logo-999BFAB6E5-seeklogo.com.png",
                                           ),
                                         ),
                                       ),
@@ -103,18 +103,18 @@ class _BlogScreenState extends State<BlogScreen> {
                                   ),
                                 ]),
                             StoryItem(
-                              name: "2nd",
+                              name: "Tvs",
                               thumbnail: const NetworkImage(
-                                "https://www.shareicon.net/data/512x512/2017/03/29/881758_cup_512x512.png",
+                                "https://1000logos.net/wp-content/uploads/2020/07/TVS-Motor-Logo.jpg",
                               ),
                               stories: [
                                 Scaffold(
                                   body: Container(
                                     decoration: const BoxDecoration(
                                       image: DecorationImage(
-                                        fit: BoxFit.cover,
+                                        // fit: BoxFit.cover,
                                         image: NetworkImage(
-                                          "https://i.pinimg.com/originals/31/bc/a9/31bca95ba39157a6cbf53cdf09dda672.png",
+                                          "https://media.zigcdn.com/media/content/2022/Oct/cover_63500158d6a81_640x480.png",
                                         ),
                                       ),
                                     ),
