@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:feedtheneed/repositories/user_repository.dart';
+import 'package:feedtheneed/screens/email.dart';
 import 'package:feedtheneed/screens/navigation.dart';
 import 'package:feedtheneed/screens/register.dart';
 import 'package:flutter/material.dart';
@@ -176,11 +177,21 @@ class _LoginState extends State<Login> {
                         style: TextStyle(fontSize: 17, color: Colors.grey),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 50),
-                      child: Text(
-                        "Forget Password?",
-                        style: TextStyle(fontSize: 17, color: Colors.redAccent),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 50),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Email()),
+                          );
+                        },
+                        child: const Text(
+                          "Forget Password?",
+                          style:
+                              TextStyle(fontSize: 17, color: Colors.redAccent),
+                        ),
                       ),
                     ),
                   ],
