@@ -1,3 +1,4 @@
+import 'package:feedtheneed/screens/navigation.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -97,6 +98,66 @@ class _DashboardState extends State<Dashboard> {
                     ),
                   ),
                 ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 28.0, right: 28),
+              child: Container(
+                alignment: Alignment.center,
+                height: 135,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF41A2CD),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.25),
+                      spreadRadius: 0,
+                      blurRadius: 4,
+                      offset: const Offset(0, 4), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: ListTile(
+                  leading: const CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.transparent,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      radius: 27,
+                      backgroundImage: AssetImage("assets/images/logo.png"),
+                    ),
+                  ),
+                  title: const Text(
+                    "Our Top Donners",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 21,
+                    ),
+                  ),
+                  subtitle: const Text(
+                    "See Here",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
+                  trailing: IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Navigation(
+                                    index: 1,
+                                  )));
+                      //action coe when button is pressed
+                    },
+                    icon: const Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
               ),
             ),
           ],

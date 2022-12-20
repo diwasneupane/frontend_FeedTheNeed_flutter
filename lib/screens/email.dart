@@ -10,6 +10,15 @@ class Email extends StatefulWidget {
 }
 
 class _EmailState extends State<Email> {
+  final _formKey = GlobalKey<FormState>();
+
+  final _emailController = TextEditingController();
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +26,7 @@ class _EmailState extends State<Email> {
       // backgroundColor: const Color(0x00ffffff),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
+          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 22),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -92,8 +101,16 @@ class _EmailState extends State<Email> {
                     child: Column(
                       children: [
                         Form(
+                          key: _formKey,
                           autovalidateMode: AutovalidateMode.always,
                           child: TextFormField(
+                            key: const ValueKey('email'),
+                            keyboardType: TextInputType.emailAddress,
+                            validator: (email) =>
+                                email != null && !EmailValidator.validate(email)
+                                    ? 'Enter a valid email'
+                                    : null,
+                            controller: _emailController,
                             decoration: InputDecoration(
                               hintText: 'Exapmle@gmail.com',
                               hintStyle: const TextStyle(
@@ -110,10 +127,6 @@ class _EmailState extends State<Email> {
                                   const Color.fromARGB(255, 242, 241, 241),
                               contentPadding: const EdgeInsets.all(16),
                             ),
-                            validator: (value) =>
-                                EmailValidator.validate(value!)
-                                    ? null
-                                    : "Please enter a valid email",
                           ),
                         ),
                         const SizedBox(
@@ -123,10 +136,20 @@ class _EmailState extends State<Email> {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (context) => const Otp()),
-                              );
+                              if (_formKey.currentState!.validate()) {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) => const Otp()),
+                                );
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      'Email Sent Successfully',
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                );
+                              }
                             },
                             style: ButtonStyle(
                               foregroundColor: MaterialStateProperty.all<Color>(
@@ -159,5 +182,17 @@ class _EmailState extends State<Email> {
         ),
       ),
     );
+  }
+
+  _otp() async {
+    if (_formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Sent Otp')),
+      );
+    } else {
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const Otp()),
+      );
+    }
   }
 }

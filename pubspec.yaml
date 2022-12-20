@@ -57,6 +57,8 @@ dependencies:
   im_stepper: ^1.0.1+1
   fl_chart: ^0.55.2
   syncfusion_flutter_charts: ^20.3.60
+  khalti_flutter: ^2.1.0
+  get_storage: ^2.0.3
   
 
 dev_dependencies:
