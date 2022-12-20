@@ -1,3 +1,4 @@
+import 'package:feedtheneed/screens/passwordreset.dart';
 import 'package:flutter/material.dart';
 
 class Otp extends StatefulWidget {
@@ -8,6 +9,7 @@ class Otp extends StatefulWidget {
 }
 
 class _OtpState extends State<Otp> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,16 +89,19 @@ class _OtpState extends State<Otp> {
                   height: 160,
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 14.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            _textFieldOTP(first: true, last: false),
-                            _textFieldOTP(first: false, last: false),
-                            _textFieldOTP(first: false, last: false),
-                            _textFieldOTP(first: false, last: true),
-                          ],
+                      Form(
+                        key: _formKey,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 14.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              _textFieldOTP(first: true, last: false),
+                              _textFieldOTP(first: false, last: false),
+                              _textFieldOTP(first: false, last: false),
+                              _textFieldOTP(first: false, last: true),
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(
@@ -105,7 +110,23 @@ class _OtpState extends State<Otp> {
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ResetPassword()),
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    'Otp validate',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              );
+                            }
+                          },
                           style: ButtonStyle(
                             foregroundColor:
                                 MaterialStateProperty.all<Color>(Colors.white),
@@ -163,37 +184,45 @@ class _OtpState extends State<Otp> {
   }
 
   Widget _textFieldOTP({required bool first, last}) {
-    return SizedBox(
-      height: 65,
-      child: AspectRatio(
-        aspectRatio: 1.0,
-        child: TextFormField(
-          autofocus: true,
-          onChanged: (value) {
-            if (value.length == 1 && last == false) {
-              FocusScope.of(context).nextFocus();
-            }
-            if (value.isEmpty && first == false) {
-              FocusScope.of(context).previousFocus();
-            }
-          },
-          showCursor: false,
-          readOnly: false,
-          textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 25),
-          keyboardType: TextInputType.number,
-          maxLength: 1,
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: const Color.fromARGB(255, 242, 241, 241),
-            counter: const Offstage(),
-            enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(width: 0, color: Colors.black12),
-                borderRadius: BorderRadius.circular(12)),
-            focusedBorder: OutlineInputBorder(
-                borderSide:
-                    const BorderSide(width: 2, color: Color(0xFF41A2CD)),
-                borderRadius: BorderRadius.circular(12)),
+    return SingleChildScrollView(
+      child: SizedBox(
+        height: 65,
+        child: AspectRatio(
+          aspectRatio: 1.0,
+          child: TextFormField(
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Empty';
+              }
+              return null;
+            },
+            // autofocus: true,
+            onChanged: (value) {
+              if (value.length == 1 && last == false) {
+                FocusScope.of(context).nextFocus();
+              }
+              if (value.isEmpty && first == false) {
+                FocusScope.of(context).previousFocus();
+              }
+            },
+            showCursor: false,
+            readOnly: false,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 25),
+            keyboardType: TextInputType.number,
+            maxLength: 1,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: const Color.fromARGB(255, 242, 241, 241),
+              counter: const Offstage(),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(width: 1, color: Colors.black12),
+                  borderRadius: BorderRadius.circular(12)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide:
+                      const BorderSide(width: 2, color: Color(0xFF41A2CD)),
+                  borderRadius: BorderRadius.circular(12)),
+            ),
           ),
         ),
       ),
