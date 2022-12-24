@@ -150,13 +150,22 @@ class _DonationPointState extends State<DonationPoint> {
                     ),
                   ),
                   const SizedBox(
-                    height: 40,
+                    height: 20,
                   ),
                   const Text(
                     "Leaderboard",
                     style: TextStyle(fontSize: 20),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(20),
+                      ),
+                      border: Border.all(color: const Color(0xFF41A2CD)),
+                    ),
                     margin: const EdgeInsets.all(1),
                     child: SizedBox(
                       height: 300,

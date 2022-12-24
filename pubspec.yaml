@@ -59,6 +59,8 @@ dependencies:
   syncfusion_flutter_charts: ^20.3.60
   khalti_flutter: ^2.1.0
   get_storage: ^2.0.3
+  dropdownfield: ^1.0.3
+
   
 
 dev_dependencies:
