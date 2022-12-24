@@ -1,6 +1,7 @@
 import 'package:feedtheneed/model/profile.dart';
 import 'package:feedtheneed/repositories/user_repository.dart';
 import 'package:feedtheneed/screens/aboutus.dart';
+import 'package:feedtheneed/screens/donationpoint.dart';
 import 'package:feedtheneed/screens/helpandsupport.dart';
 import 'package:feedtheneed/screens/login.dart';
 import 'package:feedtheneed/screens/myaccount.dart';
@@ -207,7 +208,12 @@ class _ProfileState extends State<Profile> {
                                   color: Colors.blueGrey, fontSize: 10)),
                           trailing: IconButton(
                             onPressed: () {
-                              //action coe when button is pressed
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const DonationPoint(),
+                                ),
+                              );
                             },
                             icon: const Icon(
                               Icons.keyboard_arrow_right_outlined,

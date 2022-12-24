@@ -101,8 +101,8 @@ class _EmailState extends State<Email> {
                     child: Column(
                       children: [
                         Form(
-                          key: _formKey,
                           autovalidateMode: AutovalidateMode.always,
+                          key: _formKey,
                           child: TextFormField(
                             key: const ValueKey('email'),
                             keyboardType: TextInputType.emailAddress,

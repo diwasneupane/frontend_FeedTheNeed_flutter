@@ -1,7 +1,7 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:feedtheneed/screens/blogscreen.dart';
 import 'package:feedtheneed/screens/dashboard.dart';
-import 'package:feedtheneed/screens/donate.dart';
+import 'package:feedtheneed/screens/donate_screen.dart';
 import 'package:feedtheneed/screens/donation_history.dart';
 import 'package:feedtheneed/screens/profile.dart';
 
@@ -18,17 +18,17 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
   int increment = 0;
   int _currentIndex = 0;
-  PageController? _pageController;
+  // PageController? _pageController;
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController();
+    // _pageController = PageController();
   }
 
   @override
   void dispose() {
-    _pageController!.dispose();
+    // _pageController!.dispose();
     super.dispose();
   }
 
@@ -52,7 +52,7 @@ class _NavigationState extends State<Navigation> {
             _currentIndex = index;
             increment = 1;
           });
-          _pageController!.jumpToPage(index);
+          // _pageController!.jumpToPage(index);
         },
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(

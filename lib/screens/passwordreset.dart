@@ -120,8 +120,6 @@ class _ResetPasswordState extends State<ResetPassword> {
                           ),
                           TextFormField(
                             autovalidateMode: AutovalidateMode.always,
-
-                            // key: const ValueKey('password'),
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please Enter Your Password';
