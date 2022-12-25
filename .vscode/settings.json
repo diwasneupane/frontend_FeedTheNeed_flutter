@@ -5,6 +5,7 @@
         "autovalidate",
         "blogdescription",
         "blogid",
+        "cancelsnack",
         "changepassword",
         "contactus",
         "feedtheneed",
@@ -24,6 +25,7 @@
         "myaccout",
         "Signup",
         "singleblog",
-        "singleproduct"
+        "singleproduct",
+        "successsnack"
     ]
 }

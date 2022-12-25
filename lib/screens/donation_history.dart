@@ -8,7 +8,7 @@ class DonationHistory extends StatefulWidget {
 }
 
 class _DonationHistoryState extends State<DonationHistory> {
-  final List<String> items = List<String>.generate(10, (i) => '$i');
+  final List<String> items = List<String>.generate(1, (i) => '$i');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +43,7 @@ class _DonationHistoryState extends State<DonationHistory> {
                 height: 15,
               ),
               const Text(
-                "Rs. 1,00,000",
+                "Rs. 100",
                 style: TextStyle(
                   fontSize: 24,
                   color: Color(0xFF41A2CD),
@@ -111,11 +111,12 @@ class _DonationHistoryState extends State<DonationHistory> {
                                 ),
                               ),
                             ),
-                            title: Text(
-                              'Transaction ${items[index]}',
-                              style: const TextStyle(color: Color(0xFF41A2CD)),
+                            title: const Text(
+                              '2022-12-25',
+                              // 'Transaction ${items[index]}',
+                              style: TextStyle(color: Color(0xFF41A2CD)),
                             ),
-                            subtitle: const Text('Item description'),
+                            subtitle: const Text('Rs 100'),
                             trailing: const Icon(
                               Icons.arrow_forward_ios_outlined,
                             ),

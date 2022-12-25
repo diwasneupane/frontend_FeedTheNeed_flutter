@@ -111,7 +111,7 @@ class _DonationPointState extends State<DonationPoint> {
                             Column(
                               children: const [
                                 Text(
-                                  "45",
+                                  "0.01",
                                   style: TextStyle(
                                     fontSize: 42,
                                     fontWeight: FontWeight.w300,
@@ -130,7 +130,7 @@ class _DonationPointState extends State<DonationPoint> {
                             ),
                             Column(
                               children: const [
-                                Text("#335",
+                                Text("#1",
                                     style: TextStyle(
                                       fontSize: 42,
                                       fontWeight: FontWeight.w300,
