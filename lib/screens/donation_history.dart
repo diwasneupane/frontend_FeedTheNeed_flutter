@@ -1,3 +1,4 @@
+import 'package:feedtheneed/screens/refund_screen.dart';
 import 'package:flutter/material.dart';
 
 class DonationHistory extends StatefulWidget {
@@ -117,8 +118,18 @@ class _DonationHistoryState extends State<DonationHistory> {
                               style: TextStyle(color: Color(0xFF41A2CD)),
                             ),
                             subtitle: const Text('Rs 100'),
-                            trailing: const Icon(
-                              Icons.arrow_forward_ios_outlined,
+                            trailing: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const RefundRequest(),
+                                    ));
+                              },
+                              child: const Icon(
+                                Icons.cancel_outlined,
+                              ),
                             ),
                           ),
                         ),

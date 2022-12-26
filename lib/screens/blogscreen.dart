@@ -35,18 +35,19 @@ class _BlogScreenState extends State<BlogScreen> {
                 children: [
                   Row(
                     children: [
-                      Flexible(
-                        flex: 1,
-                        child: TextFormField(
-                          onChanged: (value) {
-                            setState(() {
-                              searchQuery = value;
-                            });
-                          },
-                          cursorColor: const Color(0xFF41A2CD),
-                          decoration: InputDecoration(
+                      Container(
+                        child: Flexible(
+                          flex: 1,
+                          child: TextFormField(
+                            onChanged: (value) {
+                              setState(() {
+                                searchQuery = value;
+                              });
+                            },
+                            cursorColor: const Color(0xFF41A2CD),
+                            decoration: InputDecoration(
                               fillColor:
-                                  const Color.fromARGB(255, 224, 224, 224),
+                                  const Color.fromARGB(255, 239, 239, 239),
                               filled: true,
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30),
@@ -58,7 +59,9 @@ class _BlogScreenState extends State<BlogScreen> {
                                 padding: const EdgeInsets.all(15),
                                 width: 18,
                                 child: const Icon(Icons.search),
-                              )),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ],
