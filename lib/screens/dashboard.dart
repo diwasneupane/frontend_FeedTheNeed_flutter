@@ -1,4 +1,4 @@
-import 'package:feedtheneed/screens/navigation.dart';
+import 'package:feedtheneed/screens/donationpoint.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -154,9 +154,7 @@ class _DashboardState extends State<Dashboard> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Navigation(
-                                    index: 1,
-                                  )));
+                              builder: (context) => const DonationPoint()));
                       //action coe when button is pressed
                     },
                     icon: const Icon(

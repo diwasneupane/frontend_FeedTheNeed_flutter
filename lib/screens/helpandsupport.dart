@@ -1,6 +1,5 @@
 import 'package:feedtheneed/screens/contactUs.dart';
 import 'package:feedtheneed/screens/map.dart';
-import 'package:feedtheneed/screens/refund_screen.dart';
 import 'package:flutter/material.dart';
 
 class Helpandsupport extends StatefulWidget {
@@ -40,7 +39,7 @@ class _HelpandsupportState extends State<Helpandsupport> {
               child: Column(
                 children: [
                   CircleAvatar(
-                    radius: 70.0,
+                    radius: 90.0,
                     backgroundColor: Colors.transparent,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(50.0),
@@ -169,51 +168,51 @@ class _HelpandsupportState extends State<Helpandsupport> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const RefundRequest()),
-                          );
-                        },
-                        child: ListTile(
-                          leading: const CircleAvatar(
-                            radius: 30,
-                            backgroundColor: Colors.white,
-                            child: CircleAvatar(
-                              backgroundColor:
-                                  Color.fromARGB(255, 241, 250, 253),
-                              radius: 27,
-                              child: Icon(
-                                Icons.cancel_outlined,
-                                color: Color(0xFF41A2CD),
-                              ),
-                            ),
-                          ),
-                          title: const Text(
-                            "Refund Donation",
-                          ),
-                          subtitle: const Text("Incase of emergency ",
-                              style: TextStyle(
-                                  color: Colors.blueGrey, fontSize: 10)),
-                          trailing: IconButton(
-                            onPressed: () {
-                              //action coe when button is pressed
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const RefundRequest()),
-                              );
-                            },
-                            icon: const Icon(
-                              Icons.keyboard_arrow_right_outlined,
-                              color: Colors.blueGrey,
-                            ),
-                          ),
-                        ),
-                      ),
+                      // InkWell(
+                      //   onTap: () {
+                      //     Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (context) => const RefundRequest()),
+                      //     );
+                      //   },
+                      //   child: ListTile(
+                      //     leading: const CircleAvatar(
+                      //       radius: 30,
+                      //       backgroundColor: Colors.white,
+                      //       child: CircleAvatar(
+                      //         backgroundColor:
+                      //             Color.fromARGB(255, 241, 250, 253),
+                      //         radius: 27,
+                      //         child: Icon(
+                      //           Icons.cancel_outlined,
+                      //           color: Color(0xFF41A2CD),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     title: const Text(
+                      //       "Refund Donation",
+                      //     ),
+                      //     subtitle: const Text("Incase of emergency ",
+                      //         style: TextStyle(
+                      //             color: Colors.blueGrey, fontSize: 10)),
+                      //     trailing: IconButton(
+                      //       onPressed: () {
+                      //         //action coe when button is pressed
+                      //         Navigator.push(
+                      //           context,
+                      //           MaterialPageRoute(
+                      //               builder: (context) =>
+                      //                   const RefundRequest()),
+                      //         );
+                      //       },
+                      //       icon: const Icon(
+                      //         Icons.keyboard_arrow_right_outlined,
+                      //         color: Colors.blueGrey,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                       const SizedBox(height: 30),
                     ],
                   ),
