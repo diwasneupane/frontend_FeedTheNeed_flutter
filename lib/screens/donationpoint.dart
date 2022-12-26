@@ -12,20 +12,21 @@ class _DonationPointState extends State<DonationPoint> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // leading: const Icon(Icons.arrow_back),
-        // actions: [
-        //   IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
-        //   IconButton(onPressed: () {}, icon: const Icon(Icons.person_add)),
-        // ],
-        backgroundColor: Colors.transparent,
-        title: const Text(
-          "Donation Point ",
-          style: TextStyle(
-            fontSize: 20,
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back,
             color: Colors.black,
           ),
         ),
-        centerTitle: true,
+        title: const Text(
+          "Donation Point",
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.transparent,
         elevation: 0.0,
       ),
       body: SingleChildScrollView(

@@ -186,38 +186,47 @@ class _ProfileState extends State<Profile> {
                             ),
                           ),
                         ),
-                        ListTile(
-                          leading: const CircleAvatar(
-                            radius: 30,
-                            backgroundColor: Colors.white,
-                            child: CircleAvatar(
-                              backgroundColor:
-                                  Color.fromARGB(255, 241, 250, 253),
-                              radius: 27,
-                              child: Icon(
-                                Icons.auto_graph,
-                                color: Color(0xFF41A2CD),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const DonationPoint()),
+                            );
+                          },
+                          child: ListTile(
+                            leading: const CircleAvatar(
+                              radius: 30,
+                              backgroundColor: Colors.white,
+                              child: CircleAvatar(
+                                backgroundColor:
+                                    Color.fromARGB(255, 241, 250, 253),
+                                radius: 27,
+                                child: Icon(
+                                  Icons.auto_graph,
+                                  color: Color(0xFF41A2CD),
+                                ),
                               ),
                             ),
-                          ),
-                          title: const Text(
-                            "Donation Point ",
-                          ),
-                          subtitle: const Text("View your donation point",
-                              style: TextStyle(
-                                  color: Colors.blueGrey, fontSize: 10)),
-                          trailing: IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const DonationPoint(),
-                                ),
-                              );
-                            },
-                            icon: const Icon(
-                              Icons.keyboard_arrow_right_outlined,
-                              color: Colors.blueGrey,
+                            title: const Text(
+                              "Donation Point ",
+                            ),
+                            subtitle: const Text("View your donation point",
+                                style: TextStyle(
+                                    color: Colors.blueGrey, fontSize: 10)),
+                            trailing: IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const DonationPoint(),
+                                  ),
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.keyboard_arrow_right_outlined,
+                                color: Colors.blueGrey,
+                              ),
                             ),
                           ),
                         ),
@@ -354,34 +363,43 @@ class _ProfileState extends State<Profile> {
                         const SizedBox(
                           height: 20,
                         ),
-                        ListTile(
-                          leading: const CircleAvatar(
-                            radius: 30,
-                            backgroundColor: Colors.white,
-                            child: CircleAvatar(
-                              backgroundColor:
-                                  Color.fromARGB(255, 241, 250, 253),
-                              radius: 27,
-                              child: Icon(
-                                Icons.favorite_border,
-                                color: Color(0xFF41A2CD),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const AboutUs(),
+                                ));
+                          },
+                          child: ListTile(
+                            leading: const CircleAvatar(
+                              radius: 30,
+                              backgroundColor: Colors.white,
+                              child: CircleAvatar(
+                                backgroundColor:
+                                    Color.fromARGB(255, 241, 250, 253),
+                                radius: 27,
+                                child: Icon(
+                                  Icons.favorite_border,
+                                  color: Color(0xFF41A2CD),
+                                ),
                               ),
                             ),
-                          ),
-                          title: const Text(
-                            "About App ",
-                          ),
-                          trailing: IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const AboutUs(),
-                                  )); //action coe when button is pressed
-                            },
-                            icon: const Icon(
-                              Icons.keyboard_arrow_right_outlined,
-                              color: Colors.blueGrey,
+                            title: const Text(
+                              "About App ",
+                            ),
+                            trailing: IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const AboutUs(),
+                                    )); //action coe when button is pressed
+                              },
+                              icon: const Icon(
+                                Icons.keyboard_arrow_right_outlined,
+                                color: Colors.blueGrey,
+                              ),
                             ),
                           ),
                         ),
