@@ -2,6 +2,7 @@ import 'package:feedtheneed/model/profile.dart';
 import 'package:feedtheneed/repositories/user_repository.dart';
 import 'package:feedtheneed/screens/changepassword.dart';
 import 'package:feedtheneed/screens/information.dart';
+import 'package:feedtheneed/screens/navigation.dart';
 import 'package:feedtheneed/utils/api_url.dart';
 import 'package:flutter/material.dart';
 
@@ -158,38 +159,63 @@ class _MyAccountState extends State<MyAccount> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      ListTile(
-                        leading: const CircleAvatar(
-                          radius: 30,
-                          backgroundColor: Colors.white,
-                          child: CircleAvatar(
-                            backgroundColor: Color.fromARGB(255, 241, 250, 253),
-                            radius: 27,
-                            child: Icon(
-                              Icons.account_balance_wallet_outlined,
-                              color: Color(0xFF41A2CD),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Navigation(
+                                      index: 1,
+                                    )),
+                          );
+                        },
+                        child: ListTile(
+                          leading: const CircleAvatar(
+                            radius: 30,
+                            backgroundColor: Colors.white,
+                            child: CircleAvatar(
+                              backgroundColor:
+                                  Color.fromARGB(255, 241, 250, 253),
+                              radius: 27,
+                              child: Icon(
+                                Icons.account_balance_wallet_outlined,
+                                color: Color(0xFF41A2CD),
+                              ),
                             ),
                           ),
-                        ),
-                        title: const Text(
-                          "Donation History ",
-                        ),
-                        subtitle: const Text("See Your Donation History",
-                            style: TextStyle(
-                                color: Colors.blueGrey, fontSize: 10)),
-                        trailing: IconButton(
-                          onPressed: () {
-                            //action coe when button is pressed
-                          },
-                          icon: const Icon(
-                            Icons.keyboard_arrow_right_outlined,
-                            color: Colors.blueGrey,
+                          title: const Text(
+                            "Donation History ",
+                          ),
+                          subtitle: const Text("See Your Donation History",
+                              style: TextStyle(
+                                  color: Colors.blueGrey, fontSize: 10)),
+                          trailing: IconButton(
+                            onPressed: () {
+                              //action coe when button is pressed
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Navigation(
+                                          index: 1,
+                                        )),
+                              );
+                            },
+                            icon: const Icon(
+                              Icons.keyboard_arrow_right_outlined,
+                              color: Colors.blueGrey,
+                            ),
                           ),
                         ),
                       ),
                       const SizedBox(height: 10),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ChangePassword()),
+                          );
+                        },
                         child: ListTile(
                           leading: const CircleAvatar(
                             radius: 30,

@@ -1,5 +1,6 @@
 import 'package:feedtheneed/screens/contactUs.dart';
 import 'package:feedtheneed/screens/map.dart';
+import 'package:feedtheneed/screens/refund_screen.dart';
 import 'package:flutter/material.dart';
 
 class Helpandsupport extends StatefulWidget {
@@ -169,7 +170,13 @@ class _HelpandsupportState extends State<Helpandsupport> {
                       ),
                       const SizedBox(height: 10),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const RefundRequest()),
+                          );
+                        },
                         child: ListTile(
                           leading: const CircleAvatar(
                             radius: 30,
@@ -185,7 +192,7 @@ class _HelpandsupportState extends State<Helpandsupport> {
                             ),
                           ),
                           title: const Text(
-                            "Cancel Donation",
+                            "Refund Donation",
                           ),
                           subtitle: const Text("Incase of emergency ",
                               style: TextStyle(
@@ -193,6 +200,12 @@ class _HelpandsupportState extends State<Helpandsupport> {
                           trailing: IconButton(
                             onPressed: () {
                               //action coe when button is pressed
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const RefundRequest()),
+                              );
                             },
                             icon: const Icon(
                               Icons.keyboard_arrow_right_outlined,
