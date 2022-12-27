@@ -146,4 +146,32 @@ class UserAPI {
 
     return isUpdated;
   }
+
+  Future<bool> updateUserDonationPoint(String donationPoint) async {
+    bool isUpdated = false;
+
+    try {
+      var url = baseUrl + update;
+      var dio = HttpServices().getDioInstance();
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? token = prefs.getString("token");
+      var response = await dio.put(
+        url,
+        data: {
+          "donation_point": donationPoint,
+        },
+        options: Options(
+          headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
+        ),
+      );
+      debugPrint(response.data.toString());
+      if (response.statusCode == 200) {
+        return true;
+      }
+    } catch (e) {
+      debugPrint("Error updating donation point: $e");
+    }
+
+    return isUpdated;
+  }
 }
