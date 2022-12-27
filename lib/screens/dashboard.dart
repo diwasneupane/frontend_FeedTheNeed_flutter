@@ -11,8 +11,8 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   List<Color> gradientColors = [
-    const Color.fromARGB(255, 0, 186, 254),
-    const Color.fromARGB(255, 0, 238, 255),
+    const Color(0xFF41A2CD),
+    const Color(0xFF41A2CD),
   ];
 
   bool showAvg = false;
@@ -267,7 +267,7 @@ class _DashboardState extends State<Dashboard> {
         ),
       ),
       borderData: FlBorderData(
-        show: true,
+        show: false,
         border: Border.all(color: Colors.transparent),
       ),
       minX: 0,
@@ -277,14 +277,14 @@ class _DashboardState extends State<Dashboard> {
       lineBarsData: [
         LineChartBarData(
           spots: const [
-            FlSpot(0, 0),
-            FlSpot(0.8, 2),
-            FlSpot(4.9, 5),
-            FlSpot(5.8, 4),
-            FlSpot(7, 6),
-            FlSpot(8, 4),
-            FlSpot(9, 5),
-            FlSpot(11, 0),
+            FlSpot(0.5, 0),
+            FlSpot(1, 0.5),
+            FlSpot(2, 1),
+            FlSpot(4, 2),
+            FlSpot(6, 3),
+            FlSpot(9, 4),
+            FlSpot(10, 5),
+            FlSpot(11, 6),
           ],
           isCurved: false,
           gradient: LinearGradient(
@@ -298,9 +298,8 @@ class _DashboardState extends State<Dashboard> {
           belowBarData: BarAreaData(
             show: true,
             gradient: LinearGradient(
-              colors: gradientColors
-                  .map((color) => color.withOpacity(0.6))
-                  .toList(),
+              colors:
+                  gradientColors.map((color) => color.withOpacity(1)).toList(),
             ),
           ),
         ),

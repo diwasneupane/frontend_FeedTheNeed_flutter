@@ -15,6 +15,7 @@ class UserProfile {
   String? address;
   String? picture;
   String? dob;
+  int? donation_point;
   // int? age;
 
   UserProfile({
@@ -28,6 +29,7 @@ class UserProfile {
     // this.age,
     this.picture,
     this.dob,
+    this.donation_point,
   });
 
   factory UserProfile.fromJson(Map<String, dynamic> json) =>
