@@ -10,5 +10,6 @@ const map = "map";
 const blog = "blog/";
 const changepassword = "user/changepassword/";
 const donation = "user/send_transaction/";
+const usertransaction = "user_transaction";
 
 String? token;

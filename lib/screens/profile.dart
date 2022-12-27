@@ -78,10 +78,11 @@ class _ProfileState extends State<Profile> {
                           radius: 30,
                           backgroundColor: Colors.white,
                           child: CircleAvatar(
+                            backgroundColor: Colors.white,
                             radius: 27,
                             backgroundImage: user!.picture == null
                                 ? const NetworkImage(
-                                    "https://w.wallhaven.cc/full/v9/wallhaven-v9kw9l.jpg")
+                                    "https://www.javatpoint.com/js/nodejs/images/nodejs-sorting2.png")
                                 : NetworkImage(baseUrl + user!.picture!),
                           ),
                         ),

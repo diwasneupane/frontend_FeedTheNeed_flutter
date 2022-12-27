@@ -23,9 +23,11 @@
         "mapview",
         "myaccount",
         "myaccout",
+        "prefs",
         "Signup",
         "singleblog",
         "singleproduct",
-        "successsnack"
+        "successsnack",
+        "usertransaction"
     ]
 }

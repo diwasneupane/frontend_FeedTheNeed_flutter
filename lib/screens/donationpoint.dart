@@ -1,3 +1,6 @@
+import 'package:feedtheneed/model/profile.dart';
+import 'package:feedtheneed/repositories/user_repository.dart';
+import 'package:feedtheneed/utils/api_url.dart';
 import 'package:flutter/material.dart';
 
 class DonationPoint extends StatefulWidget {
@@ -8,6 +11,22 @@ class DonationPoint extends StatefulWidget {
 }
 
 class _DonationPointState extends State<DonationPoint> {
+  UserProfile? user;
+  @override
+  void initState() {
+    getUserDetails();
+    super.initState();
+  }
+
+  void getUserDetails() async {
+    UserProfile? user1 = await UserRepository().getUserDetails();
+
+    setState(() {
+      user = user1!;
+      debugPrint(user!.address.toString());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,111 +64,118 @@ class _DonationPointState extends State<DonationPoint> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  Container(
-                    padding: const EdgeInsets.only(top: 10),
-                    height: 300,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      image: DecorationImage(
-                        colorFilter: ColorFilter.mode(
-                            Colors.black.withOpacity(0.08), BlendMode.dstIn),
-                        image: const NetworkImage(
-                          "https://img.freepik.com/free-vector/charity-doodle-vector-background-donation-concept_53876-143434.jpg",
-                        ),
-                        fit: BoxFit.fill,
-                      ),
-                      // color: const Color(0xFF41A2CD),
-                      // border: Border.all(color: const Color(0xFF41A2CD)),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.15),
-                          spreadRadius: 0,
-                          blurRadius: 2,
-                          offset:
-                              const Offset(0, 4), // changes position of shadow
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        Stack(
-                          children: const [
-                            CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  "https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg"),
-                              radius: 60,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const Text(
-                          "User",
-                          style: TextStyle(
-                            fontSize: 22,
-                            // color: Colors.white,
-                            // fontWeight: FontWeight.w500,
+                  if (user != null)
+                    Container(
+                      padding: const EdgeInsets.only(top: 10),
+                      height: 300,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        image: DecorationImage(
+                          colorFilter: ColorFilter.mode(
+                              Colors.black.withOpacity(0.08), BlendMode.dstIn),
+                          image: const NetworkImage(
+                            "https://img.freepik.com/free-vector/charity-doodle-vector-background-donation-concept_53876-143434.jpg",
                           ),
+                          fit: BoxFit.fill,
                         ),
-                        const SizedBox(
-                          height: 10,
+                        // color: const Color(0xFF41A2CD),
+                        // border: Border.all(color: const Color(0xFF41A2CD)),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(20),
                         ),
-                        const Divider(
-                          thickness: 1,
-                          indent: 20,
-                          endIndent: 20,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Column(
-                              children: const [
-                                Text(
-                                  "0.01",
-                                  style: TextStyle(
-                                    fontSize: 42,
-                                    fontWeight: FontWeight.w300,
-                                    // color: Colors.white.withOpacity(0.9),
-                                  ),
-                                ),
-                                Text(
-                                  "Donation Point",
-                                  style: TextStyle(
-                                    fontSize: 19,
-                                    // fontWeight: FontWeight.bold,
-                                    // color: Colors.white,
-                                  ),
-                                ),
-                              ],
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.15),
+                            spreadRadius: 0,
+                            blurRadius: 2,
+                            offset: const Offset(
+                                0, 4), // changes position of shadow
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          Stack(
+                            children: [
+                              CircleAvatar(
+                                backgroundImage: user!.picture == null
+                                    ? const NetworkImage(
+                                        "https://www.javatpoint.com/js/nodejs/images/nodejs-sorting2.png")
+                                    : NetworkImage(baseUrl + user!.picture!),
+                                radius: 60,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            user!.username == null
+                                ? "Update your username"
+                                : "${user!.username}",
+                            style: const TextStyle(
+                              fontSize: 22,
+                              // color: Colors.white,
+                              // fontWeight: FontWeight.w500,
                             ),
-                            Column(
-                              children: const [
-                                Text("#1",
-                                    style: TextStyle(
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Divider(
+                            thickness: 1,
+                            indent: 20,
+                            endIndent: 20,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Column(
+                                children: [
+                                  Text(
+                                    user!.donation_point == null
+                                        ? "Update your username"
+                                        : "${user!.donation_point}",
+                                    style: const TextStyle(
                                       fontSize: 42,
                                       fontWeight: FontWeight.w300,
                                       // color: Colors.white.withOpacity(0.9),
-                                    )),
-                                Text("Rank",
+                                    ),
+                                  ),
+                                  const Text(
+                                    "Donation Point",
                                     style: TextStyle(
                                       fontSize: 19,
                                       // fontWeight: FontWeight.bold,
                                       // color: Colors.white,
-                                    )),
-                              ],
-                            )
-                          ],
-                        )
-                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: const [
+                                  Text("#1",
+                                      style: TextStyle(
+                                        fontSize: 42,
+                                        fontWeight: FontWeight.w300,
+                                        // color: Colors.white.withOpacity(0.9),
+                                      )),
+                                  Text("Rank",
+                                      style: TextStyle(
+                                        fontSize: 19,
+                                        // fontWeight: FontWeight.bold,
+                                        // color: Colors.white,
+                                      )),
+                                ],
+                              )
+                            ],
+                          )
+                        ],
+                      ),
                     ),
-                  ),
                   const SizedBox(
                     height: 20,
                   ),
