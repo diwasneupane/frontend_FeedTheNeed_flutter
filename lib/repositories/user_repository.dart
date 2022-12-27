@@ -21,4 +21,8 @@ class UserRepository {
   Future<bool> updateUserProfile(UserProfile userProfile, File? image) async {
     return await UserAPI().updateUserProfile(userProfile, image);
   }
+
+  Future<bool> updateUserDonationPoint(String donationPoint) async {
+    return await UserAPI().updateUserDonationPoint(donationPoint);
+  }
 }

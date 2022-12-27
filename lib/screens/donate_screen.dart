@@ -1,5 +1,7 @@
 import 'package:feedtheneed/model/donate_model.dart';
+import 'package:feedtheneed/model/profile.dart';
 import 'package:feedtheneed/repositories/donate_repository.dart';
+import 'package:feedtheneed/repositories/user_repository.dart';
 import 'package:feedtheneed/screens/navigation.dart';
 import 'package:feedtheneed/utils/showmessages.dart';
 import 'package:flutter/material.dart';
@@ -23,17 +25,31 @@ class Donate extends StatefulWidget {
 }
 
 class _DonateState extends State<Donate> {
+  UserProfile? user;
+  @override
+  void initState() {
+    getUserDetails();
+    super.initState();
+  }
+
+  void getUserDetails() async {
+    UserProfile? user1 = await UserRepository().getUserDetails();
+
+    setState(() {
+      user = user1!;
+      debugPrint(user!.address.toString());
+    });
+  }
+
   final _globalkey = GlobalKey<FormState>();
 
   final _donornameController = TextEditingController();
-  // final _donationcategoryController = TextEditingController();
   final _donoraddressController = TextEditingController();
   final _donornoteController = TextEditingController();
   String dropdownValue = list.first;
 
   // List of items in our dropdown menu
 
-  @override
   final _amountController = TextEditingController();
 
   getAmt() {
@@ -296,6 +312,14 @@ class _DonateState extends State<Donate> {
                             PaymentPreference.khalti,
                           ],
                           onSuccess: (su) {
+                            double totalDonationPoint =
+                                double.parse(user!.donation_point!);
+
+                            totalDonationPoint +=
+                                int.parse(_amountController.text) / 1000;
+                            debugPrint(
+                                "Total donation Point: $totalDonationPoint");
+
                             // debugPrint("Success Pay: ${su.productName}");
                             DonateModel donateModel = DonateModel(
                               donation_amount:
@@ -307,7 +331,8 @@ class _DonateState extends State<Donate> {
                               idx: su.idx,
                               token: su.token,
                             );
-                            _donationData(donateModel);
+                            _donationData(
+                                donateModel, totalDonationPoint.toString());
                             // const successsnackBar = SnackBar(
                             //   content: Text('Payment Successful'),
                             // );
@@ -339,13 +364,14 @@ class _DonateState extends State<Donate> {
     );
   }
 
-  _donationData(DonateModel donateModel) async {
+  _donationData(DonateModel donateModel, String donationPoint) async {
     bool isDonated = await DonateRepository().donation(donateModel);
-    _displayMessage(isDonated);
+    _displayMessage(isDonated, donationPoint);
   }
 
-  _displayMessage(bool isDonated) {
+  _displayMessage(bool isDonated, String donationPoint) {
     if (isDonated) {
+      _updateDonationPoint(donationPoint);
       displaySuccessMessage(context, "Donation successful");
       Future.delayed(const Duration(milliseconds: 1500), () {
         // Navigator.pushNamed(context, '/bottomNavBar');
@@ -359,5 +385,11 @@ class _DonateState extends State<Donate> {
     } else {
       displayErrorMessage(context, "Donation Failed");
     }
+  }
+
+  _updateDonationPoint(String donationPoint) async {
+    bool isSignUp =
+        await UserRepository().updateUserDonationPoint(donationPoint);
+    // _displayMessage(isSignUp);
   }
 }

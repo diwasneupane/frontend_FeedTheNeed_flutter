@@ -15,7 +15,7 @@ class UserProfile {
   String? address;
   String? picture;
   String? dob;
-  int? donation_point;
+  String? donation_point;
   // int? age;
 
   UserProfile({

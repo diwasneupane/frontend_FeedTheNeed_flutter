@@ -17,7 +17,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
     address: json['address'] as String?,
     picture: json['picture'] as String?,
     dob: json['dob'] as String?,
-    donation_point: json['donation_point'] as int?,
+    donation_point: json['donation_point'] as String?,
   );
 }
 
