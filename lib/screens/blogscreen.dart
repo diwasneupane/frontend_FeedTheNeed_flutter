@@ -1,4 +1,5 @@
 import 'package:feedtheneed/repositories/blog_repository.dart';
+import 'package:feedtheneed/screens/blog_description.dart';
 import 'package:feedtheneed/utils/api_url.dart';
 import 'package:flutter/material.dart';
 import 'package:stories_for_flutter/stories_for_flutter.dart';
@@ -236,10 +237,14 @@ class _BlogScreenState extends State<BlogScreen> {
                                                 children: [
                                                   IconButton(
                                                     onPressed: () {
-                                                      Navigator.pushNamed(
-                                                          context,
-                                                          '/blogdescription',
-                                                          arguments: blogid);
+                                                      Navigator.of(context)
+                                                          .push(
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                BlogDescription(
+                                                                    blogId:
+                                                                        blogid!)),
+                                                      );
                                                       //action coe when button is pressed
                                                     },
                                                     icon: const Icon(

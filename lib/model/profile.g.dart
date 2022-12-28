@@ -8,6 +8,7 @@ part of 'profile.dart';
 
 UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
   return UserProfile(
+    user_id: json['_id'] as String?,
     firstname: json['firstname'] as String?,
     lastname: json['lastname'] as String?,
     email: json['email'] as String?,
@@ -17,12 +18,13 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
     address: json['address'] as String?,
     picture: json['picture'] as String?,
     dob: json['dob'] as String?,
-    donation_point: json['donation_point'] as String?,
+    donation_point: (json['donation_point'] as num?)?.toDouble(),
   );
 }
 
 Map<String, dynamic> _$UserProfileToJson(UserProfile instance) =>
     <String, dynamic>{
+      '_id': instance.user_id,
       'email': instance.email,
       'firstname': instance.firstname,
       'lastname': instance.lastname,

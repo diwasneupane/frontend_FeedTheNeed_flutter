@@ -8,21 +8,13 @@ part 'blog.g.dart';
 class Blog {
   @JsonKey(name: '_id')
   String? id;
-  @JsonKey(name: 'blog_name')
   String? blog_name;
-  @JsonKey(name: 'short_desc')
   String? short_desc;
-  @JsonKey(name: 'blog_desc')
   String? blog_desc;
-  @JsonKey(name: 'blog_category')
   String? blog_category;
-  @JsonKey(name: 'blog_price')
-  String? blog_price;
-  @JsonKey(name: 'blog_image')
+  int? blog_price;
   String? blog_image;
-  @JsonKey(name: 'donor_name')
   String? donor_name;
-  @JsonKey(name: 'donor_image')
   String? donor_image;
 
   Blog(
@@ -45,4 +37,6 @@ class Blog {
   }
 
   Map<String, dynamic> toJson() => _$BlogToJson(this);
+
+  getSingleBlogs() {}
 }

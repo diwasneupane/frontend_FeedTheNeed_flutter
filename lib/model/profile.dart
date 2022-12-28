@@ -5,6 +5,8 @@ part 'profile.g.dart';
 //flutter pub run build_runner build
 @JsonSerializable()
 class UserProfile {
+  @JsonKey(name: '_id')
+  String? user_id;
   String? email;
   String? firstname;
   String? lastname;
@@ -15,10 +17,11 @@ class UserProfile {
   String? address;
   String? picture;
   String? dob;
-  String? donation_point;
+  double? donation_point;
   // int? age;
 
   UserProfile({
+    this.user_id,
     this.firstname,
     this.lastname,
     this.email,

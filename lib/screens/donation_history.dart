@@ -11,6 +11,7 @@ class DonationHistory extends StatefulWidget {
 }
 
 class _DonationHistoryState extends State<DonationHistory> {
+  BuildContext? dcontext;
   List<int> total_donation = [];
   final int _total_user_donation = 0;
 
@@ -215,12 +216,56 @@ class _DonationHistoryState extends State<DonationHistory> {
 
                                           trailing: InkWell(
                                             onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const RefundRequest(),
-                                                  ));
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    dcontext = context;
+                                                    return AlertDialog(
+                                                      title: const Center(
+                                                        child: Text(
+                                                          ' Warning',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        ),
+                                                      ),
+                                                      content: const Text(
+                                                          'Do you really want to delete your transaction?'),
+                                                      actions: <Widget>[
+                                                        TextButton(
+                                                            onPressed: () {
+                                                              Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                      builder:
+                                                                          (context) =>
+                                                                              const RefundRequest()));
+
+                                                              //action code for "Yes" button
+                                                            },
+                                                            child: const Text(
+                                                              'Yes',
+                                                              style: TextStyle(
+                                                                color: Color(
+                                                                    0xFF41A2CD),
+                                                                fontSize: 18,
+                                                              ),
+                                                            )),
+                                                        TextButton(
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context); //close Dialog
+                                                          },
+                                                          child: const Text(
+                                                            'No',
+                                                            style: TextStyle(
+                                                              color: Colors.red,
+                                                              fontSize: 18,
+                                                            ),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    );
+                                                  });
                                             },
                                             child: const Icon(
                                               Icons.cancel_outlined,

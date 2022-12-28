@@ -11,5 +11,9 @@ const blog = "blog/";
 const changepassword = "user/changepassword/";
 const donation = "user/send_transaction/";
 const usertransaction = "user_transaction";
+const updatedonationpoint = "update_donation_point";
+const refundrequest = "refund_donation_request/";
+const donationpoint = "update_donation_point/";
+const leaderboard = "leaderboard/";
 
 String? token;

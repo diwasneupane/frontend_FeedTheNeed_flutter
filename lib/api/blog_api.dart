@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:feedtheneed/api/http_services.dart';
+import 'package:feedtheneed/model/blog.dart';
 import 'package:feedtheneed/response/single_blog_response.dart';
 import 'package:feedtheneed/utils/api_url.dart';
 import 'package:flutter/material.dart';
@@ -31,24 +32,36 @@ class BlogAPI {
     return blogList;
   }
 
-  Future<SingleBlogResponse?> getSingleBlogs(String blogid) async {
+  Future<Blog?> getSingleBlogs(String blogid) async {
     Future.delayed(const Duration(seconds: 2), () {});
     SingleBlogResponse? singleblogResponse;
+    Blog? blogModel;
     try {
       var dio = HttpServices().getDioInstance();
 
       Response response = await dio.get(baseUrl + blog + blogid);
-
+      debugPrint("Blog response:${response.data}");
       if (response.statusCode == 201) {
         // debugPrint(response.data.toString());
         singleblogResponse = SingleBlogResponse.fromJson(response.data);
+        blogModel = Blog(
+          id: singleblogResponse.data!.id,
+          blog_name: singleblogResponse.data!.blog_name,
+          short_desc: singleblogResponse.data!.short_desc,
+          blog_desc: singleblogResponse.data!.blog_desc,
+          blog_category: singleblogResponse.data!.blog_category,
+          blog_price: singleblogResponse.data!.blog_price,
+          blog_image: singleblogResponse.data!.blog_image,
+          donor_name: singleblogResponse.data!.donor_name,
+          donor_image: singleblogResponse.data!.donor_image,
+        );
         debugPrint("asdbh");
       } else {
-        singleblogResponse = null;
+        blogModel = null;
       }
     } catch (e) {
       throw Exception(e);
     }
-    return singleblogResponse;
+    return blogModel;
   }
 }

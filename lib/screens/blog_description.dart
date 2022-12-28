@@ -1,13 +1,33 @@
+import 'package:feedtheneed/model/blog.dart';
+import 'package:feedtheneed/repositories/blog_repository.dart';
+import 'package:feedtheneed/utils/api_url.dart';
 import 'package:flutter/material.dart';
 
 class BlogDescription extends StatefulWidget {
-  const BlogDescription({Key? key}) : super(key: key);
+  final String blogId;
+  const BlogDescription({Key? key, required this.blogId}) : super(key: key);
 
   @override
   State<BlogDescription> createState() => _BlogDescriptionState();
 }
 
 class _BlogDescriptionState extends State<BlogDescription> {
+  Blog? blog;
+  @override
+  void initState() {
+    getblogDetails();
+    super.initState();
+  }
+
+  void getblogDetails() async {
+    Blog? blog1 = await BlogRepository().getSingleBlogs(widget.blogId);
+
+    setState(() {
+      blog = blog1!;
+      debugPrint(blog!.toString());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,10 +51,10 @@ class _BlogDescriptionState extends State<BlogDescription> {
             padding: const EdgeInsets.only(top: 32),
             child: Column(
               children: [
-                const Text(
+                Text(
                   // headline6,
-                  "Feeding arun valley child orphanage",
-                  style: TextStyle(
+                  blog!.blog_name!,
+                  style: const TextStyle(
                     color: Color.fromARGB(255, 80, 80, 80),
                     fontSize: 22,
                   ),
@@ -59,27 +79,27 @@ class _BlogDescriptionState extends State<BlogDescription> {
                         key: const ValueKey(["id"]),
                         // margin: EdgeInsets.all(5),
                         color: const Color.fromARGB(255, 243, 243, 243),
-                        child: const ListTile(
+                        child: ListTile(
                           leading: CircleAvatar(
                             radius: 30,
                             backgroundColor: Colors.white,
                             child: CircleAvatar(
                               radius: 27,
-                              backgroundImage: NetworkImage(
-                                  "https://w.wallhaven.cc/full/v9/wallhaven-v9kw9l.jpg"),
+                              backgroundImage:
+                                  NetworkImage(baseUrl + blog!.donor_image!),
                             ),
                           ),
                           title: Text(
-                            "Diwas Neupane",
-                            style: TextStyle(
+                            blog!.donor_name!,
+                            style: const TextStyle(
                               color: Colors.black,
                             ),
                           ),
                           subtitle: Text(
-                            "orphanage",
-                            style: TextStyle(color: Colors.black),
+                            blog!.blog_category!,
+                            style: const TextStyle(color: Colors.black),
                           ),
-                          trailing: Text('2000'),
+                          trailing: const Text('2000'),
                         ),
                       );
                     },
@@ -92,9 +112,8 @@ class _BlogDescriptionState extends State<BlogDescription> {
                   height: 200,
                   decoration: BoxDecoration(
                     // color: const Color(0xff7c94b6),
-                    image: const DecorationImage(
-                      image: NetworkImage(
-                          'https://www.daysoftheyear.com/wp-content/uploads/international-day-of-charity-1.jpg'),
+                    image: DecorationImage(
+                      image: NetworkImage(baseUrl + blog!.blog_image!),
                       fit: BoxFit.cover,
                     ),
 
@@ -105,12 +124,11 @@ class _BlogDescriptionState extends State<BlogDescription> {
                   height: 16,
                 ),
                 RichText(
-                  text: const TextSpan(
+                  text: TextSpan(
                     children: [
                       TextSpan(
-                        text:
-                            'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.',
-                        style: TextStyle(
+                        text: blog!.blog_desc!,
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 14,
                           height: 1.7,
