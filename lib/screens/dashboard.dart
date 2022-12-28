@@ -40,7 +40,7 @@ class _DashboardState extends State<Dashboard> {
     Colors.red,
     const Color(0xff3EE094),
     const Color(0xFF41A2CD),
-    const Color.fromARGB(255, 240, 240, 240),
+    const Color.fromARGB(255, 182, 53, 226),
   ];
   List<Color> gradientColors = [
     const Color(0xFF41A2CD),

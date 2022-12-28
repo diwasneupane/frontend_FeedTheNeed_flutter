@@ -312,13 +312,13 @@ class _DonateState extends State<Donate> {
                             PaymentPreference.khalti,
                           ],
                           onSuccess: (su) {
-                            double totalDonationPoint =
-                                double.parse(user!.donation_point!);
+                            // double totalDonationPoint =
+                            //     double.parse(user!.donation_point!.toString());
 
-                            totalDonationPoint +=
-                                int.parse(_amountController.text) / 1000;
-                            debugPrint(
-                                "Total donation Point: $totalDonationPoint");
+                            // totalDonationPoint +=
+                            //     int.parse(_amountController.text) / 1000;
+                            // debugPrint(
+                            //     "Total donation Point: $totalDonationPoint");
 
                             // debugPrint("Success Pay: ${su.productName}");
                             DonateModel donateModel = DonateModel(
@@ -331,8 +331,7 @@ class _DonateState extends State<Donate> {
                               idx: su.idx,
                               token: su.token,
                             );
-                            _donationData(
-                                donateModel, totalDonationPoint.toString());
+                            _donationData(donateModel);
                             // const successsnackBar = SnackBar(
                             //   content: Text('Payment Successful'),
                             // );
@@ -364,14 +363,14 @@ class _DonateState extends State<Donate> {
     );
   }
 
-  _donationData(DonateModel donateModel, String donationPoint) async {
+  _donationData(DonateModel donateModel) async {
     bool isDonated = await DonateRepository().donation(donateModel);
-    _displayMessage(isDonated, donationPoint);
+    _displayMessage(isDonated);
   }
 
-  _displayMessage(bool isDonated, String donationPoint) {
+  _displayMessage(bool isDonated) {
     if (isDonated) {
-      _updateDonationPoint(donationPoint);
+      _updateDonationPoint();
       displaySuccessMessage(context, "Donation successful");
       Future.delayed(const Duration(milliseconds: 1500), () {
         // Navigator.pushNamed(context, '/bottomNavBar');
@@ -387,9 +386,8 @@ class _DonateState extends State<Donate> {
     }
   }
 
-  _updateDonationPoint(String donationPoint) async {
-    bool isSignUp =
-        await UserRepository().updateUserDonationPoint(donationPoint);
+  _updateDonationPoint() async {
+    bool isSignUp = await DonateRepository().donationPoint();
     // _displayMessage(isSignUp);
   }
 }

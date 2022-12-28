@@ -14,7 +14,7 @@ Blog _$BlogFromJson(Map<String, dynamic> json) {
     blog_desc: json['blog_desc'] as String?,
     blog_category: json['blog_category'] as String?,
     blog_image: json['blog_image'] as String?,
-    blog_price: json['blog_price'] as String?,
+    blog_price: json['blog_price'] as int?,
     donor_image: json['donor_image'] as String?,
     donor_name: json['donor_name'] as String?,
   );
