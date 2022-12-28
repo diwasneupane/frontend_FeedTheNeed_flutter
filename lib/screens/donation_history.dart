@@ -173,15 +173,46 @@ class _DonationHistoryState extends State<DonationHistory> {
                                           ),
                                           title: Text(
                                             lstTransaction[index]!
-                                                .created_at!
+                                                .donation_amount!
                                                 .toString(),
-                                            // 'Transaction ${items[index]}',
                                             style: const TextStyle(
-                                                color: Color(0xFF41A2CD)),
+                                                color: Color(0xFF41A2CD),
+                                                fontSize: 20),
                                           ),
-                                          subtitle: Text(lstTransaction[index]!
-                                              .donation_amount!
-                                              .toString()),
+                                          // SizedBox(
+                                          //   width: MediaQuery.of(context)
+                                          //           .size
+                                          //           .width *
+                                          //       0.28,
+                                          // ),
+
+                                          subtitle: Row(
+                                            children: [
+                                              Text(
+                                                  // DateFormat('MMM-d-y hh:mm a')
+                                                  //     .format(DateTime(
+
+                                                  //             as int)),
+                                                  lstTransaction[index]!
+                                                      .created_at
+                                                      .toString()
+                                                  // 'Transaction ${items[index]}',
+                                                  ),
+                                              const Text(
+                                                "•",
+                                                style: TextStyle(fontSize: 30),
+                                              ),
+                                              Text(
+                                                lstTransaction[index]!
+                                                    .donation_status!,
+
+                                                // 'Transaction ${items[index]}',
+                                                style: const TextStyle(
+                                                    color: Color(0xFF41A2CD)),
+                                              )
+                                            ],
+                                          ),
+
                                           trailing: InkWell(
                                             onTap: () {
                                               Navigator.push(

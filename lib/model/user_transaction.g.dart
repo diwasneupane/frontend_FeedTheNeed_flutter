@@ -18,6 +18,7 @@ UserTransaction _$UserTransactionFromJson(Map<String, dynamic> json) {
     idx: json['idx'] as String?,
     token: json['token'] as String?,
     created_at: json['created_at'] as String?,
+    donation_status: json['donation_status'] as String?,
   );
 }
 
@@ -33,4 +34,5 @@ Map<String, dynamic> _$UserTransactionToJson(UserTransaction instance) =>
       'idx': instance.idx,
       'token': instance.token,
       'created_at': instance.created_at,
+      'donation_status': instance.donation_status,
     };

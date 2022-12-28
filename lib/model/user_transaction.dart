@@ -19,6 +19,7 @@ class UserTransaction {
   String? idx;
   String? token;
   String? created_at;
+  String? donation_status;
 
   UserTransaction({
     this.id,
@@ -31,6 +32,7 @@ class UserTransaction {
     this.idx,
     this.token,
     this.created_at,
+    this.donation_status,
   });
 
   factory UserTransaction.fromJson(Map<String, dynamic> json) =>

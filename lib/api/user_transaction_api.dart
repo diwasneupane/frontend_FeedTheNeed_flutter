@@ -43,6 +43,7 @@ class UserTransactionApi {
               idx: data.idx,
               token: data.token,
               created_at: data.created_at,
+              donation_status: data.donation_status,
             ),
           );
         }
