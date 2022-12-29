@@ -293,7 +293,7 @@ class _DonationHistoryState extends State<DonationHistory> {
                                                     ),
                                                   )
                                                 : const Icon(
-                                                    Icons.fork_right,
+                                                    Icons.check_circle_outline,
                                                   ),
                                           ),
                                         ),
