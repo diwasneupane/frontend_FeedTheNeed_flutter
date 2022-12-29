@@ -30,7 +30,6 @@ class _ProfileState extends State<Profile> {
 
     setState(() {
       user = user1!;
-      debugPrint(user!.address.toString());
     });
   }
 

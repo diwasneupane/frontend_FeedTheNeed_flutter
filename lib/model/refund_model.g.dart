@@ -8,16 +8,16 @@ part of 'refund_model.dart';
 
 RefundModel _$RefundModelFromJson(Map<String, dynamic> json) {
   return RefundModel(
-    user_id: json['_id'] as String?,
+    user_id: json['user_id'] as String?,
     transaction_id: json['transaction_id'] as String?,
-    feedback: json['feedback'] as int?,
+    feedback: json['feedback'] as String?,
     refund_reason: json['refund_reason'] as String?,
   );
 }
 
 Map<String, dynamic> _$RefundModelToJson(RefundModel instance) =>
     <String, dynamic>{
-      '_id': instance.user_id,
+      'user_id': instance.user_id,
       'transaction_id': instance.transaction_id,
       'feedback': instance.feedback,
       'refund_reason': instance.refund_reason,

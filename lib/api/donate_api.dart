@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 
 class DonateApi {
   Future<bool> donationData(DonateModel donateModel) async {
-    debugPrint("askjd");
-
     bool isDonated = false;
     Response response;
     var url = baseUrl + donation;

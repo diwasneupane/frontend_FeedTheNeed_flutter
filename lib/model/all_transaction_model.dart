@@ -3,15 +3,15 @@
 
 import 'package:feedtheneed/model/profile.dart';
 import 'package:json_annotation/json_annotation.dart';
-part 'user_transaction.g.dart';
+part 'all_transaction_model.g.dart';
 
 //flutter pub run build_runner build
 @JsonSerializable()
-class UserTransaction {
+class AllUserTransaction {
   @JsonKey(name: '_id')
   String? id;
 
-  String? user_id;
+  UserProfile? user_id;
   int? donation_amount;
   String? donation_category;
   String? donor_name;
@@ -22,7 +22,7 @@ class UserTransaction {
   String? created_at;
   String? donation_status;
 
-  UserTransaction({
+  AllUserTransaction({
     this.id,
     this.user_id,
     this.donation_amount,
@@ -36,8 +36,8 @@ class UserTransaction {
     this.donation_status,
   });
 
-  factory UserTransaction.fromJson(Map<String, dynamic> json) =>
-      _$UserTransactionFromJson(json);
+  factory AllUserTransaction.fromJson(Map<String, dynamic> json) =>
+      _$AllUserTransactionFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UserTransactionToJson(this);
+  Map<String, dynamic> toJson() => _$AllUserTransactionToJson(this);
 }

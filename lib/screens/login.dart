@@ -284,7 +284,6 @@ class _LoginState extends State<Login> {
         ).show(context);
       }
     } catch (e) {
-      debugPrint(e.toString());
       MotionToast.error(
         description: Text("Error : ${e.toString()}"),
       ).show(context);
