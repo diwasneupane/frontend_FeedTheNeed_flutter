@@ -129,7 +129,7 @@ class _DonationHistoryState extends State<DonationHistory> {
                                     DateTime actualDate =
                                         DateTime.parse(myDate);
                                     String finalDate =
-                                        DateFormat("MMM-dd--yy hh:mm a")
+                                        DateFormat("MMM-dd-yyyy hh:mm a")
                                             .format(actualDate);
                                     return Column(
                                       mainAxisAlignment:
@@ -218,68 +218,83 @@ class _DonationHistoryState extends State<DonationHistory> {
                                               ],
                                             ),
 
-                                            trailing: InkWell(
-                                              onTap: () {
-                                                showDialog(
-                                                    context: context,
-                                                    builder: (context) {
-                                                      dcontext = context;
-                                                      return AlertDialog(
-                                                        title: const Center(
-                                                          child: Text(
-                                                            ' Warning',
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                          ),
-                                                        ),
-                                                        content: const Text(
-                                                            'Do you really want to delete your transaction?'),
-                                                        actions: <Widget>[
-                                                          TextButton(
-                                                              onPressed: () {
-                                                                debugPrint(
-                                                                    "donation history : ${lstTransaction[index]!.id!}");
-                                                                Navigator.push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder: (context) =>
-                                                                            RefundRequest(
-                                                                              transactionId: lstTransaction[index]!.id!,
-                                                                            )));
-
-                                                                //action code for "Yes" button
-                                                              },
-                                                              child: const Text(
-                                                                'Yes',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Color(
-                                                                      0xFF41A2CD),
-                                                                  fontSize: 18,
+                                            trailing: lstTransaction[index]!
+                                                        .donation_status !=
+                                                    "Used"
+                                                ? InkWell(
+                                                    onTap: () {
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (context) {
+                                                            dcontext = context;
+                                                            return AlertDialog(
+                                                              title:
+                                                                  const Center(
+                                                                child: Text(
+                                                                  ' Warning',
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
                                                                 ),
-                                                              )),
-                                                          TextButton(
-                                                            onPressed: () {
-                                                              Navigator.pop(
-                                                                  context); //close Dialog
-                                                            },
-                                                            child: const Text(
-                                                              'No',
-                                                              style: TextStyle(
-                                                                color:
-                                                                    Colors.red,
-                                                                fontSize: 18,
                                                               ),
-                                                            ),
-                                                          )
-                                                        ],
-                                                      );
-                                                    });
-                                              },
-                                              child: const Icon(
-                                                Icons.cancel_outlined,
-                                              ),
-                                            ),
+                                                              content: const Text(
+                                                                  'Do you really want to delete your transaction?'),
+                                                              actions: <Widget>[
+                                                                TextButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    debugPrint(
+                                                                        "donation history : ${lstTransaction[index]!.id!}");
+                                                                    Navigator.push(
+                                                                        context,
+                                                                        MaterialPageRoute(
+                                                                            builder: (context) => RefundRequest(
+                                                                                  transactionId: lstTransaction[index]!.id!,
+                                                                                )));
+
+                                                                    //action code for "Yes" button
+                                                                  },
+                                                                  child:
+                                                                      const Text(
+                                                                    'Yes',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: Color(
+                                                                          0xFF41A2CD),
+                                                                      fontSize:
+                                                                          18,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                TextButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    Navigator.pop(
+                                                                        context); //close Dialog
+                                                                  },
+                                                                  child:
+                                                                      const Text(
+                                                                    'No',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: Colors
+                                                                          .red,
+                                                                      fontSize:
+                                                                          18,
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            );
+                                                          });
+                                                    },
+                                                    child: const Icon(
+                                                      Icons.cancel_outlined,
+                                                    ),
+                                                  )
+                                                : const Icon(
+                                                    Icons.fork_right,
+                                                  ),
                                           ),
                                         ),
                                         const Padding(
