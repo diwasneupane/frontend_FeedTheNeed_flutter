@@ -26,7 +26,6 @@ class _MyAccountState extends State<MyAccount> {
 
     setState(() {
       user = user1!;
-      debugPrint(user!.address.toString());
     });
   }
 

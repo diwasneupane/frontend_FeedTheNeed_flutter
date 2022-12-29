@@ -23,6 +23,9 @@ class _NavigationState extends State<Navigation> {
   @override
   void initState() {
     super.initState();
+    setState(() {
+      const Dashboard();
+    });
     // _pageController = PageController();
   }
 

@@ -3,7 +3,6 @@ import 'package:feedtheneed/model/profile.dart';
 import 'package:feedtheneed/response/leaderboard_response.dart';
 // import 'package:feedtheneed/screens/contactusDatUserProfile.dart';
 import 'package:feedtheneed/utils/api_url.dart';
-import 'package:flutter/material.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 class LeaderBoardApi {
@@ -17,8 +16,6 @@ class LeaderBoardApi {
       var response = await dio.get(
         url,
       );
-
-      debugPrint("Response12333: ${response.data}");
       if (response.statusCode == 201) {
         LeaderBoardResponse leaderBoardResponse =
             LeaderBoardResponse.fromJson(response.data);
@@ -36,10 +33,8 @@ class LeaderBoardApi {
           );
         }
       }
-    } catch (e) {
-      debugPrint("Error: ${e.toString()}");
-    }
-    debugPrint("kkkkkk$leaderList");
+    } catch (e) {}
+
     return leaderList;
   }
 }

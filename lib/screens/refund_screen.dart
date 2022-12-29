@@ -1,8 +1,13 @@
-import 'package:feedtheneed/screens/helpandsupport.dart';
+import 'package:feedtheneed/model/refund_model.dart';
+import 'package:feedtheneed/repositories/refund_repository.dart';
+import 'package:feedtheneed/screens/navigation.dart';
+import 'package:feedtheneed/utils/showmessages.dart';
 import 'package:flutter/material.dart';
 
 class RefundRequest extends StatefulWidget {
-  const RefundRequest({super.key});
+  final String transactionId;
+  const RefundRequest({Key? key, required this.transactionId})
+      : super(key: key);
 
   @override
   State<RefundRequest> createState() => _RefundRequestState();
@@ -11,8 +16,8 @@ class RefundRequest extends StatefulWidget {
 class _RefundRequestState extends State<RefundRequest> {
   final _globalKey = GlobalKey<FormState>();
 
-  final _RefundReasonController = TextEditingController();
-  final _FeedbackController = TextEditingController();
+  final _refundReasonController = TextEditingController();
+  final _feedbackController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +26,12 @@ class _RefundRequestState extends State<RefundRequest> {
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const Navigation(
+                          index: 1,
+                        )));
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -57,7 +67,7 @@ class _RefundRequestState extends State<RefundRequest> {
                       const SizedBox(height: 10),
                       const SizedBox(height: 40),
                       TextFormField(
-                        controller: _RefundReasonController,
+                        controller: _refundReasonController,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please Enter Your Refund Reason';
@@ -89,7 +99,7 @@ class _RefundRequestState extends State<RefundRequest> {
                         height: 20,
                       ),
                       TextFormField(
-                        controller: _FeedbackController,
+                        controller: _feedbackController,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please Enter Your FeedBack';
@@ -136,12 +146,12 @@ class _RefundRequestState extends State<RefundRequest> {
                               ))),
                           onPressed: () {
                             if (_globalKey.currentState!.validate()) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const Helpandsupport(),
-                                ),
+                              RefundModel refundModel = RefundModel(
+                                transaction_id: widget.transactionId,
+                                refund_reason: _refundReasonController.text,
+                                feedback: _feedbackController.text,
                               );
+                              _refundRequest(refundModel);
                             }
                           },
                           child: const Text(
@@ -158,5 +168,27 @@ class _RefundRequestState extends State<RefundRequest> {
         ),
       ),
     );
+  }
+
+  _refundRequest(RefundModel refundModel) async {
+    bool isSignUp = await RefundRepository().getRefundRequest(refundModel);
+    _displayMessage(isSignUp);
+  }
+
+  _displayMessage(isSignUp) {
+    if (isSignUp) {
+      displaySuccessMessage(context, "Cancel Request success");
+      Future.delayed(const Duration(milliseconds: 1500), () {
+        // Navigator.pushNamed(context, '/bottomNavBar');
+        Navigator.of(context).push(
+          MaterialPageRoute(
+              builder: (context) => const Navigation(
+                    index: 1,
+                  )),
+        );
+      });
+    } else {
+      displayErrorMessage(context, "Cancel Request Failed");
+    }
   }
 }

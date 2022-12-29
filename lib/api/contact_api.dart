@@ -3,7 +3,6 @@ import 'package:feedtheneed/model/contact.dart';
 import 'package:feedtheneed/response/contact_response.dart';
 // import 'package:feedtheneed/screens/contactusDatContactUsData.dart';
 import 'package:feedtheneed/utils/api_url.dart';
-import 'package:flutter/material.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 class ContactApi {
@@ -19,12 +18,10 @@ class ContactApi {
       var response = await dio.get(
         url,
       );
-      debugPrint("sssss");
-      debugPrint("Response12333: ${response.data}");
+
       if (response.statusCode == 201) {
         ContactResponse contactModelResponse =
             ContactResponse.fromJson(response.data);
-        debugPrint("kooooooo");
 
         for (var data in contactModelResponse.data) {
           contactList.add(
@@ -38,10 +35,8 @@ class ContactApi {
           );
         }
       }
-    } catch (e) {
-      debugPrint("Error: ${e.toString()}");
-    }
-    debugPrint("kkkkkk$contactList");
+    } catch (e) {}
+
     return contactList;
   }
 }

@@ -7,10 +7,9 @@ part 'refund_model.g.dart';
 //flutter pub run build_runner build
 @JsonSerializable()
 class RefundModel {
-  @JsonKey(name: '_id')
   String? user_id;
   String? transaction_id;
-  int? feedback;
+  String? feedback;
   String? refund_reason;
 
   RefundModel({

@@ -1,3 +1,7 @@
+// ignore_for_file: unused_local_variable
+
+import 'package:feedtheneed/model/all_transaction_model.dart';
+import 'package:feedtheneed/repositories/user_transaction_repository.dart';
 import 'package:feedtheneed/screens/donationpoint.dart';
 
 import 'package:flutter/material.dart';
@@ -11,29 +15,28 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  List<AllUserTransaction?> transaction = [];
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // Refresh the screen every time it is displayed
-    setState(() {});
+  void initState() {
+    getUserDetails();
+    super.initState();
   }
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   setState;
-  //   super.initState();
-  // }
 
-  // void setstate() {
-  //   setState(() {});
-  // }
+  void getUserDetails() async {
+    List<AllUserTransaction?> user1 =
+        await UserTransactionRepository().allUserTransactionDetails();
+
+    setState(() {
+      transaction = user1;
+    });
+  }
 
   final double _opacity = 1;
   Map<String, double> dataMap = {
-    "Food Items": 18.47,
-    "Clothes": 17.70,
-    "Technology": 4.25,
-    "Cosmetics": 3.51,
+    "Pending": 18,
+    "Received": 17,
+    "Used": 4,
+    "Unused": 3,
   };
 
   List<Color> colorList = [
@@ -48,9 +51,62 @@ class _DashboardState extends State<Dashboard> {
   ];
 
   bool showAvg = false;
+  int pending = 0;
+  int received = 0;
+  int used = 0;
+  int unused = 0;
+
+  int totalMoney = 0;
 
   @override
   Widget build(BuildContext context) {
+    int pending_1 = 0;
+    int received_1 = 0;
+    int used_1 = 0;
+    int unused_1 = 0;
+
+    int totalMoney_1 = 0;
+
+    for (var i = 0; i < transaction.length; i++) {
+      AllUserTransaction? userTransaction = transaction[i];
+      setState(() {
+        totalMoney_1 += userTransaction!.donation_amount!;
+      });
+      if (userTransaction!.donation_status == "Pending") {
+        // debugPrint("Pending");
+        setState(() {
+          pending_1 += 1;
+        });
+      } else if (userTransaction.donation_status == "Received") {
+        setState(() {
+          received_1 += 1;
+        });
+      } else if (userTransaction.donation_status == "Used") {
+        setState(() {
+          used_1 += 1;
+        });
+      } else {
+        setState(() {
+          unused_1 += 1;
+        });
+      }
+    }
+
+    pending = pending_1;
+    received = received_1;
+    used = used_1;
+    unused = unused_1;
+    totalMoney = totalMoney_1;
+    debugPrint("Pending:$pending");
+
+    dataMap = {
+      "Pending": double.parse(pending.toString()),
+      "Received": double.parse(received.toString()),
+      "Used": double.parse(used.toString()),
+      "Unused": double.parse(unused.toString()),
+    };
+    debugPrint("DataMap: $dataMap");
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -74,9 +130,9 @@ class _DashboardState extends State<Dashboard> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const Text(
-                "Rs. 658",
-                style: TextStyle(
+              Text(
+                "$totalMoney",
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
