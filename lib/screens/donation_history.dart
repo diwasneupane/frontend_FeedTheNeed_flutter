@@ -62,7 +62,6 @@ class _DonationHistoryState extends State<DonationHistory> {
                       total_donation = [];
                       if (snapshot.data != null) {
                         List<UserTransaction?> lstTransaction = snapshot.data!;
-                        debugPrint("dsfsjnj${lstTransaction.length}");
 
                         // total(int index) {
                         int totalUserDonation = 0;

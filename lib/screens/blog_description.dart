@@ -24,7 +24,6 @@ class _BlogDescriptionState extends State<BlogDescription> {
 
     setState(() {
       blog = blog1!;
-      debugPrint(blog!.toString());
     });
   }
 
