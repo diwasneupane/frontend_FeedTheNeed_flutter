@@ -24,7 +24,6 @@ class _DonationPointState extends State<DonationPoint> {
 
     setState(() {
       user = user1!;
-      debugPrint(user!.address.toString());
     });
   }
 

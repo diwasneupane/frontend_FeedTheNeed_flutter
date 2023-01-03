@@ -40,7 +40,7 @@ class BlogAPI {
       var dio = HttpServices().getDioInstance();
 
       Response response = await dio.get(baseUrl + blog + blogid);
-      debugPrint("Blog response:${response.data}");
+
       if (response.statusCode == 201) {
         // debugPrint(response.data.toString());
         singleblogResponse = SingleBlogResponse.fromJson(response.data);

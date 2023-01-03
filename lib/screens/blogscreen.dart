@@ -1,4 +1,5 @@
 import 'package:feedtheneed/repositories/blog_repository.dart';
+import 'package:feedtheneed/repositories/partner_reporitory.dart';
 import 'package:feedtheneed/screens/blog_description.dart';
 import 'package:feedtheneed/utils/api_url.dart';
 import 'package:flutter/material.dart';
@@ -67,81 +68,73 @@ class _BlogScreenState extends State<BlogScreen> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: Column(
-                      // padding: const EdgeInsets.only(top: 8.0),
-                      children: [
-                        Stories(
-                          circlePadding: 2,
-                          storyItemList: [
-                            StoryItem(
-                                name: "Kfc",
-                                thumbnail: const NetworkImage(
-                                  "https://upload.wikimedia.org/wikipedia/sco/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png",
-                                ),
-                                stories: [
-                                  Scaffold(
-                                    body: Container(
-                                      decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                          // fit: BoxFit.cover,
-                                          image: NetworkImage(
-                                            "https://upload.wikimedia.org/wikipedia/sco/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png",
-                                          ),
+                  FutureBuilder<List<dynamic>>(
+                    future: PartnerRepository().getPartner(),
+                    builder: (context, snapshot) {
+                      // debugPrint(snapshot.data.toString());
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        if (snapshot.data != null) {
+                          List<dynamic> lstPartner = snapshot.data!;
+
+                          return SizedBox(
+                            width: MediaQuery.of(context).size.width * 1,
+                            height: MediaQuery.of(context).size.height * 0.13,
+                            child: SizedBox(
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: lstPartner.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  String? partnerid = lstPartner[index]["_id"];
+                                  return Stories(
+                                    circlePadding: 2,
+                                    storyItemList: [
+                                      StoryItem(
+                                        name: lstPartner[index]["partner_name"],
+                                        thumbnail: NetworkImage(
+                                          "$baseUrl${lstPartner[index]["partner_image"]!}",
                                         ),
-                                      ),
-                                    ),
-                                  ),
-                                  Scaffold(
-                                    body: Container(
-                                      decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                          // fit: BoxFit.cover,
-                                          image: NetworkImage(
-                                            "https://seeklogo.com/images/K/KFC-_Kentucky_Fried_Chicken-logo-999BFAB6E5-seeklogo.com.png",
+                                        stories: [
+                                          Scaffold(
+                                            body: Container(
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                  // fit: BoxFit.cover,
+                                                  image: NetworkImage(
+                                                    "$baseUrl${lstPartner[index]["banner_image"]!}",
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                        ],
                                       ),
-                                    ),
-                                  ),
-                                ]),
-                            StoryItem(
-                              name: "Tvs",
-                              thumbnail: const NetworkImage(
-                                "https://1000logos.net/wp-content/uploads/2020/07/TVS-Motor-Logo.jpg",
+                                    ],
+                                  );
+                                },
                               ),
-                              stories: [
-                                Scaffold(
-                                  body: Container(
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        // fit: BoxFit.cover,
-                                        image: NetworkImage(
-                                          "https://media.zigcdn.com/media/content/2022/Oct/cover_63500158d6a81_640x480.png",
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const Scaffold(
-                                  backgroundColor: Colors.black,
-                                  body: Center(
-                                    child: Text(
-                                      "That's it, Folks !",
-                                      style: TextStyle(
-                                        color: Color(0xffffffff),
-                                        fontSize: 25,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          );
+                        } else {
+                          return const Center(
+                            child: Text("No data"),
+                          );
+                        }
+                      } else if (snapshot.connectionState ==
+                          ConnectionState.waiting) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else if (snapshot.hasError) {
+                        return Text("${snapshot.error}");
+                      } else {
+                        return const Center(
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                Color(0xff754A4A)),
+                          ),
+                        );
+                      }
+                    },
                   ),
                   FutureBuilder<List<dynamic>>(
                     future: BlogRepository().getBlogs(),

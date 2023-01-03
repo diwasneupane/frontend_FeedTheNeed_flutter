@@ -64,7 +64,6 @@ class UserTransactionApi {
       );
 
       if (response.statusCode == 201) {
-        debugPrint(response.data.toString());
         AllUserTransactionResponse alluserTransactionResponse =
             AllUserTransactionResponse.fromJson(response.data);
 

@@ -23,7 +23,6 @@ class _InformationState extends State<Information> {
 
     setState(() {
       user = user1!;
-      debugPrint('add${user!.dob}');
     });
   }
 

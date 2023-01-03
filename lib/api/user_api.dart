@@ -69,7 +69,7 @@ class UserAPI {
       var dio = HttpServices().getDioInstance();
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? token = prefs.getString("token");
-      debugPrint("Token1274743: ${token!}");
+
       var response = await dio.get(
         url,
         options: Options(
@@ -124,7 +124,7 @@ class UserAPI {
             "address": userProfile.address,
             "dob": userProfile.dob,
           });
-    debugPrint(data.toString());
+
     try {
       var url = baseUrl + update;
       var dio = HttpServices().getDioInstance();
@@ -140,9 +140,7 @@ class UserAPI {
       if (response.statusCode == 200) {
         return true;
       }
-    } catch (e) {
-      debugPrint("Error updating user profile: $e");
-    }
+    } catch (e) {}
 
     return isUpdated;
   }
@@ -164,7 +162,7 @@ class UserAPI {
           headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
         ),
       );
-      debugPrint(response.data.toString());
+
       if (response.statusCode == 200) {
         return true;
       }

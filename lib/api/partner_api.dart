@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:feedtheneed/api/http_services.dart';
 import 'package:feedtheneed/utils/api_url.dart';
-import 'package:flutter/material.dart';
 
 class PartnerApi {
   Future<List<dynamic>> getPartner() async {
@@ -16,7 +15,6 @@ class PartnerApi {
         baseUrl + partner,
       );
       if (response.statusCode == 201) {
-        debugPrint("data::::::::::::${response.data}");
         // debugPrint(response.data.toString());
 
         for (var data in response.data!) {
