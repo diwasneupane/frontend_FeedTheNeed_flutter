@@ -97,7 +97,6 @@ class _DashboardState extends State<Dashboard> {
     used = used_1;
     unused = unused_1;
     totalMoney = totalMoney_1;
-    debugPrint("Pending:$pending");
 
     dataMap = {
       "Pending": double.parse(pending.toString()),
@@ -105,7 +104,6 @@ class _DashboardState extends State<Dashboard> {
       "Used": double.parse(used.toString()),
       "Unused": double.parse(unused.toString()),
     };
-    debugPrint("DataMap: $dataMap");
 
     return Scaffold(
       body: SafeArea(

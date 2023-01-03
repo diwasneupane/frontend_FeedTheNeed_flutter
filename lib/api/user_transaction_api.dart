@@ -47,10 +47,8 @@ class UserTransactionApi {
           );
         }
       }
-    } catch (e) {
-      debugPrint("Error: ${e.toString()}");
-    }
-    debugPrint("kkkkkk$transactionList");
+    } catch (e) {}
+
     return transactionList;
   }
 
@@ -69,10 +67,6 @@ class UserTransactionApi {
         debugPrint(response.data.toString());
         AllUserTransactionResponse alluserTransactionResponse =
             AllUserTransactionResponse.fromJson(response.data);
-        debugPrint("Error check!");
-
-        debugPrint(
-            "All transction details : ${alluserTransactionResponse.data.length}");
 
         for (var data in alluserTransactionResponse.data) {
           // debugPrint("transaction Id:${data!.id}");
@@ -93,10 +87,8 @@ class UserTransactionApi {
           );
         }
       }
-    } catch (e) {
-      debugPrint("Error: ${e.toString()}");
-    }
-    debugPrint("All Transaction List:$transactionList");
+    } catch (e) {}
+
     return transactionList;
   }
 }
