@@ -37,7 +37,6 @@ class _DonateState extends State<Donate> {
 
     setState(() {
       user = user1!;
-      debugPrint(user!.address.toString());
     });
   }
 

@@ -55,7 +55,6 @@ class BlogAPI {
           donor_name: singleblogResponse.data!.donor_name,
           donor_image: singleblogResponse.data!.donor_image,
         );
-        debugPrint("asdbh");
       } else {
         blogModel = null;
       }
