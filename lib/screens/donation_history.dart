@@ -243,8 +243,6 @@ class _DonationHistoryState extends State<DonationHistory> {
                                                                 TextButton(
                                                                   onPressed:
                                                                       () {
-                                                                    debugPrint(
-                                                                        "donation history : ${lstTransaction[index]!.id!}");
                                                                     Navigator.push(
                                                                         context,
                                                                         MaterialPageRoute(

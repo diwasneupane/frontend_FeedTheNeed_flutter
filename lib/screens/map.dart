@@ -25,7 +25,7 @@ class _MapScreenState extends State<MapScreen> {
   void getmapDetails() async {
     List<MapData?> map1 = await MapRepository().getMapDetails();
     // debugPrint("bbbbb${map1[0]!.lat}");
-    debugPrint("OKKKKKKKKKKKKKKKKKKKKKKKKKKk");
+
     setState(() {
       map = map1;
       // debugPrint('add${map![0]!.lat}');
