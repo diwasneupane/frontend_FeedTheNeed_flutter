@@ -37,7 +37,6 @@ class UserAPI {
     bool isLogin = false;
 
     try {
-      // var url = baseUrl + loginUrl;
       var dio = HttpServices().getDioInstance();
       var response = await dio.post(
         loginUrl,
@@ -48,7 +47,7 @@ class UserAPI {
       );
       if (response.statusCode == 200) {
         LoginResponse loginResponse = LoginResponse.fromJson(response.data);
-        // print(loginResponse.msg);
+
         token = loginResponse.token;
         if (token != null) {
           SharedPreferences prefs = await SharedPreferences.getInstance();

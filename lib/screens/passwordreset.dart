@@ -1,4 +1,7 @@
+import 'package:email_validator/email_validator.dart';
+import 'package:feedtheneed/repositories/user_repository.dart';
 import 'package:feedtheneed/screens/login.dart';
+import 'package:feedtheneed/utils/showmessages.dart';
 import 'package:flutter/material.dart';
 
 class ResetPassword extends StatefulWidget {
@@ -10,8 +13,9 @@ class ResetPassword extends StatefulWidget {
 
 class _ResetPasswordState extends State<ResetPassword> {
   final _formKey = GlobalKey<FormState>();
-  final _resetController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _newPasswordController = TextEditingController();
+  final _emailController = TextEditingController();
+
   bool _isHidden = true;
   bool _isHidden2 = true;
   bool? check1 = false;
@@ -19,8 +23,8 @@ class _ResetPasswordState extends State<ResetPassword> {
   @override
   void dispose() {
     super.dispose();
-    _resetController.dispose();
-    _passwordController.dispose();
+    _newPasswordController.dispose();
+    _emailController.dispose();
   }
 
   // final _passwordController = TextEditingController();
@@ -119,24 +123,15 @@ class _ResetPasswordState extends State<ResetPassword> {
                             height: 10,
                           ),
                           TextFormField(
-                            autovalidateMode: AutovalidateMode.always,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Please Enter Your Password';
-                              }
-                              return null;
-                            },
-                            controller: _passwordController,
-                            obscureText: _isHidden,
-                            textAlign: TextAlign.left,
-                            keyboardType: TextInputType.text,
+                            key: const ValueKey('email'),
+                            keyboardType: TextInputType.emailAddress,
+                            validator: (email) =>
+                                email != null && !EmailValidator.validate(email)
+                                    ? 'Enter a valid email'
+                                    : null,
+                            controller: _emailController,
                             decoration: InputDecoration(
-                              hintText: 'Enter Your Password Here',
-                              prefixIcon: const Icon(Icons.password),
-                              suffix: InkWell(
-                                onTap: _togglePasswordView,
-                                child: const Icon(Icons.visibility),
-                              ),
+                              hintText: 'Exapmle@gmail.com',
                               hintStyle: const TextStyle(
                                   fontSize: 16, color: Colors.grey),
                               border: OutlineInputBorder(
@@ -147,16 +142,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                                 ),
                               ),
                               filled: true,
+                              fillColor:
+                                  const Color.fromARGB(255, 242, 241, 241),
                               contentPadding: const EdgeInsets.all(16),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const Text(
-                            'Confirm Password',
-                            style: TextStyle(
-                              color: Colors.grey,
                             ),
                           ),
                           const SizedBox(
@@ -170,7 +158,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                               return null;
                             },
                             autovalidateMode: AutovalidateMode.always,
-                            controller: _resetController,
+                            controller: _newPasswordController,
                             obscureText: _isHidden2,
                             textAlign: TextAlign.left,
                             keyboardType: TextInputType.text,
@@ -201,20 +189,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                        builder: (context) => const Login()),
-                                  );
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text(
-                                        'Password Reset Successfully',
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  );
-                                }
+                                _resetPassword();
                               },
                               style: ButtonStyle(
                                 foregroundColor:
@@ -262,5 +237,28 @@ class _ResetPasswordState extends State<ResetPassword> {
     setState(() {
       _isHidden2 = !_isHidden2;
     });
+  }
+
+  _resetPassword() async {
+    bool isOtpSent = await UserRepository()
+        .resetPassword(_emailController.text, _newPasswordController.text);
+    _displayMessage(isOtpSent);
+  }
+
+  _displayMessage(bool isOtpSent) {
+    if (isOtpSent) {
+      if (_formKey.currentState!.validate()) {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const Login()),
+        );
+        Future.delayed(const Duration(milliseconds: 100), () {
+          // Navigator.pushNamed(context, '/bottomNavBar');
+
+          displaySuccessMessage(context, "Password reset Success");
+        });
+      } else {
+        displayErrorMessage(context, "Password reset failed");
+      }
+    }
   }
 }

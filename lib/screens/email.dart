@@ -1,5 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:email_validator/email_validator.dart';
+import 'package:feedtheneed/repositories/user_repository.dart';
 import 'package:feedtheneed/screens/otpenter.dart';
+import 'package:feedtheneed/utils/showmessages.dart';
 import 'package:flutter/material.dart';
 
 class Email extends StatefulWidget {
@@ -136,20 +140,13 @@ class _EmailState extends State<Email> {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (context) => const Otp()),
-                                );
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text(
-                                      'Email Sent Successfully',
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                );
-                              }
+                              _otp();
+                              // if (_formKey.currentState!.validate()) {
+                              //   Navigator.of(context).push(
+                              //     MaterialPageRoute(
+                              //         builder: (context) => const Otp()),
+                              //   );
+                              // }
                             },
                             style: ButtonStyle(
                               foregroundColor: MaterialStateProperty.all<Color>(
@@ -185,14 +182,21 @@ class _EmailState extends State<Email> {
   }
 
   _otp() async {
-    if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Sent Otp')),
-      );
+    bool isOtpSent = await UserRepository().Otp(_emailController.text);
+    _displayMessage(isOtpSent);
+  }
+
+  _displayMessage(bool isOtpSent) {
+    if (isOtpSent) {
+      Future.delayed(const Duration(milliseconds: 100), () {
+        // Navigator.pushNamed(context, '/bottomNavBar');
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const Otp()),
+        );
+        displaySuccessMessage(context, "OtpSuccess");
+      });
     } else {
-      Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const Otp()),
-      );
+      displayErrorMessage(context, "Otp Did not Sent");
     }
   }
 }
