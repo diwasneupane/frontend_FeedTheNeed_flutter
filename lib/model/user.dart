@@ -14,6 +14,7 @@ class User {
   String? firstname;
   String? lastname;
   String? dob;
+  String? otp;
 
   User({
     this.email,
@@ -23,6 +24,7 @@ class User {
     this.address,
     this.firstname,
     this.lastname,
+    this.otp,
     this.dob,
   });
 

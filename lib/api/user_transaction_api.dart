@@ -7,7 +7,6 @@ import 'package:feedtheneed/model/user_transaction.dart';
 import 'package:feedtheneed/response/all_user_transaction.dart';
 import 'package:feedtheneed/response/user_transaction_response.dart';
 import 'package:feedtheneed/utils/api_url.dart';
-import 'package:flutter/material.dart';
 
 class UserTransactionApi {
   Future<List<UserTransaction?>> userTransactionDetails() async {

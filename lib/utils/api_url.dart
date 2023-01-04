@@ -17,5 +17,8 @@ const donationpoint = "update_donation_point/";
 const leaderboard = "leaderboard/";
 const allusertransaction = "all_transaction/";
 const partner = "partner/";
+const otpsender = "user/send-otp/";
+const otpverify = "user/verify-otp";
+const resetPassword = "user/reset-password";
 
 String? token;

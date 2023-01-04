@@ -176,7 +176,8 @@ class _DonationHistoryState extends State<DonationHistory> {
                                                 backgroundColor:
                                                     Colors.transparent,
                                                 child: Icon(
-                                                  Icons.shopping_cart,
+                                                  Icons
+                                                      .wallet_giftcard_outlined,
                                                   color: Colors.blueGrey,
                                                 ),
                                               ),
